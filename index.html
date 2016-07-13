@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<html>
+
+<head>
+  <!-- Set the base href -->
+  <script>
+    document.write('<base href="." />');
+  </script>
+  <title>Router Sample</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Polyfill(s) for older browsers -->
+  <script src="node_modules/core-js/client/shim.min.js"></script>
+  <script src="node_modules/zone.js/dist/zone.js"></script>
+  <script src="node_modules/reflect-metadata/reflect.js"></script>
+
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+  <script src="systemjs.config.js"></script>
+
+<!--  <script src="dist/dependencies.js"></script> -->
+
+  <script>    
+      //System.import('app').then(null,
+        System.import('app').then(null, console.log('loaded main')).catch(function(err) {console.error(err)})
+       // );
+  </script>
+
+</head>
+
+<body>
+  <my-app>loading...</my-app>
+</body>
+
+</html>
+
+
+<!-- 
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
