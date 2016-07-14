@@ -1,10 +1,8 @@
-import { Component, Injector, provide }          from '@angular/core';
+import { Component }          from '@angular/core';
 import { ROUTER_DIRECTIVES }  from '@angular/router';
-import { Http, XHRBackend, RequestOptions } from '@angular/http';
-import { ConnectionBackend, RequestOptionsArgs } from '@angular/http/src/interfaces';
 
 import { DialogService }  from './shared';
-import {HeroService, HeroListComponent   }  from './heroes';
+import {HeroService   }  from './heroes';
 
 @Component({
   selector: 'my-app',
@@ -21,9 +19,9 @@ import {HeroService, HeroListComponent   }  from './heroes';
   `,
   providers: [
     HeroService,
-    DialogService
+    DialogService,
   ],
-  directives: [ROUTER_DIRECTIVES],  
+  directives: [ROUTER_DIRECTIVES],
 })
 export class AppComponent {}
 

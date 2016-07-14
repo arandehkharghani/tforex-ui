@@ -3,7 +3,7 @@ import { Observable }    from 'rxjs/Observable';
 import { CanComponentDeactivate } from '../interfaces/can-component-deactivate.interface';
 
 export class CanDeactivateGuard implements CanDeactivate<CanComponentDeactivate> {
-  canDeactivate(component: CanComponentDeactivate): Observable<boolean> | boolean {
+  public canDeactivate(component: CanComponentDeactivate): Observable<boolean> | boolean {
     return component.canDeactivate ? component.canDeactivate() : true;
   }
 }

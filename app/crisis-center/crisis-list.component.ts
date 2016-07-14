@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Crisis, CrisisService } from './crisis.service';
 
+const ID_CONST = 'id';
+
 @Component({
   template: `
     <ul class="items">
@@ -13,10 +15,12 @@ import { Crisis, CrisisService } from './crisis.service';
       </li>
     </ul>
   `,
-  
 })
+
+
+
 export class CrisisListComponent implements OnInit, OnDestroy {
-  crises: Crisis[];
+  private crises: Crisis[];
   private selectedId: number;
   private sub: any;
 
@@ -25,25 +29,25 @@ export class CrisisListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router) { }
 
-  isSelected(crisis: Crisis) { return crisis.id === this.selectedId; }
-
-  ngOnInit() {
+  public ngOnInit() {
     this.sub = this.route
       .params
       .subscribe(params => {
-        this.selectedId = +params['id'];
+        this.selectedId = +params[ID_CONST];
         this.service.getCrises()
           .then(crises => this.crises = crises);
       });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     if (this.sub) {
       this.sub.unsubscribe();
     }
   }
 
-  onSelect(crisis: Crisis) {
+  private isSelected(crisis: Crisis) { return crisis.id === this.selectedId; }
+
+  private onSelect(crisis: Crisis) {
     // Navigate with Absolute link
     this.router.navigate(['/crisis-center', crisis.id]);
   }

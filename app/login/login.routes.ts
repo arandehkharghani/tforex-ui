@@ -2,7 +2,7 @@ import { AuthService, AuthGuard }        from '../shared';
 import { LoginComponent }     from '../login';
 
 export const LoginRoutes = [
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
 ];
 
 export const AUTH_PROVIDERS = [AuthGuard, AuthService];

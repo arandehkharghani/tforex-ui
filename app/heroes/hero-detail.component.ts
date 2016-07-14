@@ -3,6 +3,8 @@ import { Router, ActivatedRoute }       from '@angular/router';
 
 import { Hero, HeroService } from '../heroes';
 
+const ID_CONST = 'id';
+
 @Component({
   template: `
   <h2>HEROES</h2>
@@ -21,7 +23,7 @@ import { Hero, HeroService } from '../heroes';
   `,
 })
 export class HeroDetailComponent implements OnInit, OnDestroy  {
-  hero: Hero;
+  private hero: Hero;
 
   private sub: any;
 
@@ -30,20 +32,20 @@ export class HeroDetailComponent implements OnInit, OnDestroy  {
     private router: Router,
     private service: HeroService) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       let id = +params['id']; // (+) converts string 'id' to a number
+       let id = +params[ID_CONST]; // (+) converts string 'id' to a number
        this.service.getHero(id).then(hero => this.hero = hero);
      });
 
 
   }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();    
+  public ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
-  gotoHeroes() {
+  public gotoHeroes() {
     let heroId = this.hero ? this.hero.id : null;
     // Pass along the hero id if available
     // so that the HeroList component can select that hero.

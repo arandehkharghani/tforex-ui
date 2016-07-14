@@ -6,6 +6,8 @@ import 'rxjs/add/observable/fromPromise';
 import { Crisis, CrisisService } from './crisis.service';
 import { DialogService } from '../shared/services/dialog.service';
 
+const ID_CONST = 'id';
+
 @Component({
   template: `
   <div *ngIf="crisis">
@@ -22,12 +24,12 @@ import { DialogService } from '../shared/services/dialog.service';
     </p>
   </div>
   `,
-  styles: ['input {width: 20em}']
+  styles: ['input {width: 20em}'],
 })
 
 export class CrisisDetailComponent implements OnInit, OnDestroy {
-  crisis: Crisis;
-  editName: string;
+  private crisis: Crisis;
+  private editName: string;
   private sub: any;
 
   constructor(
@@ -37,11 +39,11 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
     private dialogService: DialogService
     ) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.sub = this.route
       .params
       .subscribe(params => {
-        let id = +params['id'];
+        let id = +params[ID_CONST];
         this.service.getCrisis(id)
           .then(crisis => {
             if (crisis) {
@@ -54,22 +56,22 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     if (this.sub) {
       this.sub.unsubscribe();
     }
   }
 
-  cancel() {
+  public cancel() {
     this.gotoCrises();
   }
 
-  save() {
+  public save() {
     this.crisis.name = this.editName;
     this.gotoCrises();
   }
 
-  canDeactivate(): Observable<boolean> | boolean {
+  public canDeactivate(): Observable<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
     if (!this.crisis || this.crisis.name === this.editName) {
       return true;
@@ -81,7 +83,7 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
     return o;
   }
 
-  gotoCrises() {
+  public gotoCrises() {
     let crisisId = this.crisis ? this.crisis.id : null;
     // Pass along the hero id if available
     // so that the CrisisListComponent can select that hero.

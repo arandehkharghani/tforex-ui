@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Hero, HeroService } from '../heroes';
 
-import { StrategyTempService } from '../strategies/shared/strategy-temp.service';
+const ID_CONST = 'id';
 
 @Component({
   template: `
@@ -19,7 +19,7 @@ import { StrategyTempService } from '../strategies/shared/strategy-temp.service'
   `,
 })
 export class HeroListComponent implements OnInit, OnDestroy {
-  heroes: Hero[];
+  private heroes: Hero[];
 
   private selectedId: number;
   private sub: any;
@@ -28,27 +28,24 @@ export class HeroListComponent implements OnInit, OnDestroy {
     private service: HeroService,
     private router: Router) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.sub = this.router
       .routerState
       .queryParams
       .subscribe(params => {
-        this.selectedId = +params['id'];
+        this.selectedId = +params[ID_CONST];
         this.service.getHeroes()
           .then(heroes => this.heroes = heroes);
       });
-
-      let temp = new StrategyTempService();
-      console.log(temp.getName());
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
-  isSelected(hero: Hero) { return hero.id === this.selectedId; }
+  private isSelected(hero: Hero) { return hero.id === this.selectedId; }
 
-  onSelect(hero: Hero) {
+  private onSelect(hero: Hero) {
     this.router.navigate(['/hero', hero.id]);
   }
 

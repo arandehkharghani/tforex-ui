@@ -11,7 +11,7 @@ import { LoginRoutes,
 import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
 
 export const routes: RouterConfig = [
-  ...HeroesRoutes, 
+  ...HeroesRoutes,
   ...LoginRoutes,
   ...CrisisCenterRoutes,
   ...StrategyCentreRoutes,
@@ -20,7 +20,7 @@ export const routes: RouterConfig = [
 export const APP_ROUTER_PROVIDERS = [
   provideRouter(routes),
   AUTH_PROVIDERS,
-  CanDeactivateGuard
+  CanDeactivateGuard,
 ];
 
 

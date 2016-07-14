@@ -7,13 +7,13 @@ import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class AuthService {
-  isLoggedIn: boolean = false;
+  public isLoggedIn: boolean = false;
 
-  login() {
+  public login() {
     return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
   }
 
-  logout() {
+  public logout() {
     this.isLoggedIn = false;
   }
 }

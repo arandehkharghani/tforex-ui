@@ -1,7 +1,6 @@
 import * as shared from '../../shared';
 
 export interface Strategy {
-    
 
     id: string;
 

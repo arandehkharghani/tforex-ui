@@ -10,16 +10,16 @@ let HEROES = [
   new Hero(13, 'Bombasto'),
   new Hero(14, 'Celeritas'),
   new Hero(15, 'Magneta'),
-  new Hero(16, 'RubberMan')
+  new Hero(16, 'RubberMan'),
 ];
 
 let heroesPromise = Promise.resolve(HEROES);
 
 @Injectable()
 export class HeroService {
-  getHeroes() { return heroesPromise; }
+  public getHeroes() { return heroesPromise; }
 
-  getHero(id: number | string) {
+  public getHero(id: number | string) {
     return heroesPromise
       .then(heroes => heroes.filter(h => h.id === +id)[0]);
   }

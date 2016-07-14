@@ -4,7 +4,7 @@ import { HeroDetailComponent }   from './hero-detail.component';
 
 export const HeroesRoutes: RouterConfig = [
   { path: 'heroes',  component: HeroListComponent },
-  { path: 'hero/:id', component: HeroDetailComponent }
+  { path: 'hero/:id', component: HeroDetailComponent },
 ];
 
 

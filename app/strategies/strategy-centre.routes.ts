@@ -7,7 +7,7 @@ export const StrategyCentreRoutes: RouterConfig = [
   {
     path: '',
     redirectTo: '/strategy-centre',
-    terminal: true
+    terminal: true,
   },
   {
     path: 'strategy-centre',
@@ -15,8 +15,8 @@ export const StrategyCentreRoutes: RouterConfig = [
     children: [
       {
         path: '',
-        component: StrategyListComponent
-      }
-    ]
-  }
+        component: StrategyListComponent,
+      },
+    ],
+  },
 ];

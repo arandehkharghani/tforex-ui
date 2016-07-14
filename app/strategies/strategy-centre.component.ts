@@ -15,8 +15,8 @@ import * as shared from '../shared';
   directives: [ROUTER_DIRECTIVES, shared.ErrorComponent],
   providers: [
     StrategyService,
-    shared.HTTP_SERVICE_PROVIDER
-  ]
+    shared.HTTP_SERVICE_PROVIDER,
+  ],
 })
 
 export class StrategyCentreComponent {}

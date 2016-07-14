@@ -9,7 +9,7 @@ import { AuthService }            from '../../shared';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
+  public canActivate(
     // Not using but worth knowing about
     next:  ActivatedRouteSnapshot,
     state: RouterStateSnapshot

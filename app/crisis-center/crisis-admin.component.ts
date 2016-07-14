@@ -4,7 +4,7 @@ import { Component }         from '@angular/core';
   template:  `
     <h3>CRISIS ADMINISTRATION</h3>
     <p>Manage your crises here</p>
-  `
+  `,
 
 })
 

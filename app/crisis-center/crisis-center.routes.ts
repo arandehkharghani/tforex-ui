@@ -11,7 +11,7 @@ export const CrisisCenterRoutes: RouterConfig = [
   {
     path: '',
     redirectTo: '/crisis-center',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'crisis-center',
@@ -20,19 +20,19 @@ export const CrisisCenterRoutes: RouterConfig = [
       {
         path: 'admin',
         component: CrisisAdminComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: ':id',
         component: CrisisDetailComponent,
-        canDeactivate: [CanDeactivateGuard]
+        canDeactivate: [CanDeactivateGuard],
       },
       {
         path: '',
-        component: CrisisListComponent
-      }
-    ]
-  }
+        component: CrisisListComponent,
+      },
+    ],
+  },
 ];
 
 

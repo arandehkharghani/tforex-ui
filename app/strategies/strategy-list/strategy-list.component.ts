@@ -9,7 +9,7 @@ import * as shared from '../../shared';
 @Component({
     templateUrl: 'app/strategies/strategy-list/strategy-list.component.html',
 })
-export class StrategyListComponent implements OnInit, OnDestroy {    
+export class StrategyListComponent implements OnInit, OnDestroy {
 
     private _strategies: strategy.Strategy[] = [];
     private _strategiesSubscription: Subscription;
@@ -26,9 +26,6 @@ export class StrategyListComponent implements OnInit, OnDestroy {
             strategies => this._strategies = strategies,
             error => console.log('COMPONENT', error)
         );
-
-      let temp = new strategy.StrategyTempService();
-      console.log(temp.getName());
     }
     public ngOnDestroy() {
         if (this._strategiesSubscription) {

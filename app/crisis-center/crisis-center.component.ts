@@ -9,7 +9,7 @@ import { CrisisService }        from './crisis.service';
     <router-outlet></router-outlet>
   `,
   directives: [ROUTER_DIRECTIVES],
-  providers:  [CrisisService]
+  providers:  [CrisisService],
 })
 export class CrisisCenterComponent { }
 

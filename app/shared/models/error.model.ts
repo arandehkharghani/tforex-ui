@@ -6,6 +6,6 @@ export interface ErrorResponse {
 }
 
 export class Error {
-    type: enums.ErrorTypeEnum;
-    data: any;
+    public type: enums.ErrorTypeEnum;
+    public data: any;
 }

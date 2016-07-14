@@ -16,17 +16,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CrisisService {
 
-  static nextCrisisId = 100;
+  private static nextCrisisId = 100;
 
-  getCrises() { return crisesPromise; }
+  public getCrises() { return crisesPromise; }
 
-  getCrisis(id: number | string) {
+  public getCrisis(id: number | string) {
     return crisesPromise
       .then(crises => crises.filter(c => c.id === +id)[0]);
   }
 
 
-  addCrisis(name: string) {
+  public addCrisis(name: string) {
     name = name.trim();
     if (name) {
       let crisis = new Crisis(CrisisService.nextCrisisId++, name);

@@ -9,20 +9,20 @@ import { AuthService } from '../shared';
     <p>
       <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
       <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-    </p>`
+    </p>`,
 })
 export class LoginComponent {
-  message: string;
+  private message: string;
 
   constructor(public authService: AuthService, public router: Router) {
     this.setMessage();
   }
 
-  setMessage() {
+  private setMessage() {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
 
-  login() {
+  private login() {
     this.message = 'Trying to log in ...';
 
     this.authService.login().subscribe(() => {
@@ -35,7 +35,7 @@ export class LoginComponent {
     });
   }
 
-  logout() {
+  private logout() {
     this.authService.logout();
     this.setMessage();
   }

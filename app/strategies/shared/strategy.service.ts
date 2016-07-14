@@ -7,7 +7,7 @@ import { Strategy } from '../../strategies';
 @Injectable()
 export class StrategyService {
     protected basePath = 'http://localhost:10010';
-    public defaultHeaders : Headers = new Headers();
+    public defaultHeaders: Headers = new Headers();
 
     constructor(protected http: Http, @Optional() basePath: string) {
         if (basePath) {
@@ -20,7 +20,7 @@ export class StrategyService {
      * Returns a list of available strategies
      * @param id The id of a specific strategy
      */
-    public get (id?: string, extraHttpRequestParams?: any ) : Observable<Array<Strategy>> {
+    public get (id?: string, extraHttpRequestParams?: any ): Observable<Array<Strategy>> {
         const path = this.basePath + '/strategies';
         let queryParameters = new URLSearchParams();
         let headerParams = this.defaultHeaders;
@@ -31,7 +31,7 @@ export class StrategyService {
         let requestOptions: RequestOptionsArgs = {
             method: 'GET',
             headers: headerParams,
-            search: queryParameters
+            search: queryParameters,
         };
 
         return this.http.request(path, requestOptions)

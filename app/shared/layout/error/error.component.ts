@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
-import * as shared from '../../../shared'
+import * as shared from '../../../shared';
 
 @Component({
     selector: 'my-error',
@@ -44,6 +44,6 @@ export class ErrorComponent implements OnInit, OnDestroy {
         this._cdr.markForCheck();
     }
     private isTypeGeneric(type: shared.ErrorTypeEnum) {
-        return type == shared.ErrorTypeEnum.generic;
+        return type === shared.ErrorTypeEnum.generic;
     }
 }

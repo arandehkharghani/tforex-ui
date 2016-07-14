@@ -12,17 +12,16 @@ import 'rxjs/Rx';
 
 import * as shared from '../../shared';
 
-export let HTTP_SERVICE_PROVIDER =
-    {
-        provide: Http, useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) =>
-            new HttpService(backend, defaultOptions),
-        deps: [XHRBackend, RequestOptions]
-    }
+export let HTTP_SERVICE_PROVIDER = {
+    provide: Http, useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) =>
+        new HttpService(backend, defaultOptions),
+    deps: [XHRBackend, RequestOptions],
+};
 
 
 @Injectable()
 export class HttpService extends Http {
-     private _error$: Subject<shared.Error>;
+    private _error$: Subject<shared.Error>;
     private _dataStore: {
         errors: shared.Error[]
     };
@@ -83,26 +82,25 @@ export class HttpService extends Http {
         if (!error) {
             currentError.type = shared.ErrorTypeEnum.generic;
             currentError.data = 'NullErrorObject';
-        }
-        else if (error.Error != undefined && error.Error == true) {
-            // a handled error from a remote api call
-            if (error.ValidationResult && error.ValidationResult.ValidationErrors) {
-                // this is a validation error
-                currentError.type = shared.ErrorTypeEnum.validation;
-                currentError.data = error.ValidationResult.ValidationErrors;
-            }
-            else {
+        } else {
+            if (error.Error !== undefined && error.Error === true) {
+                // a handled error from a remote api call
+                if (error.ValidationResult && error.ValidationResult.ValidationErrors) {
+                    // this is a validation error
+                    currentError.type = shared.ErrorTypeEnum.validation;
+                    currentError.data = error.ValidationResult.ValidationErrors;
+                } else {
+                    currentError.type = shared.ErrorTypeEnum.generic;
+                    currentError.data = error.Message;
+                }
+            } else {
                 currentError.type = shared.ErrorTypeEnum.generic;
-                currentError.data = error.Message;
+                currentError.data = 'MissingErrorProperty';
             }
-        }
-        else {
-            currentError.type = shared.ErrorTypeEnum.generic;
-            currentError.data = 'MissingErrorProperty';            
-        }
 
-        this._dataStore.errors.push(currentError);
-        this._error$.next(currentError);
-        return Observable.throw(currentError);
+            this._dataStore.errors.push(currentError);
+            this._error$.next(currentError);
+            return Observable.throw(currentError);
+        }
     }
 }
