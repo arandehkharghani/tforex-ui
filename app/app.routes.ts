@@ -1,20 +1,20 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 
-import { CrisisCenterRoutes } from './crisis-center/crisis-center.routes';
-import { HeroesRoutes }       from './heroes/heroes.routes';
+import { crisisCenterRoutes } from './crisis-center/crisis-center.routes';
+import { heroesRoutes }       from './heroes/heroes.routes';
 
-import { StrategyCentreRoutes }       from './strategies/strategy-centre.routes';
+import { strategyCentreRoutes }       from './strategies/strategy-centre.routes';
 
-import { LoginRoutes,
+import { loginRoutes,
   AUTH_PROVIDERS }     from './login/login.routes';
 
 import { CanDeactivateGuard } from './shared/guards/can-deactivate.guard';
 
 export const routes: RouterConfig = [
-  ...HeroesRoutes,
-  ...LoginRoutes,
-  ...CrisisCenterRoutes,
-  ...StrategyCentreRoutes,
+  ...heroesRoutes,
+  ...loginRoutes,
+  ...crisisCenterRoutes,
+  ...strategyCentreRoutes,
 ];
 
 export const APP_ROUTER_PROVIDERS = [

@@ -3,7 +3,7 @@ import { RouterConfig }          from '@angular/router';
 import { StrategyCentreComponent } from './strategy-centre.component';
 import { StrategyListComponent } from './strategy-list/strategy-list.component';
 
-export const StrategyCentreRoutes: RouterConfig = [
+export const strategyCentreRoutes: RouterConfig = [
   {
     path: '',
     redirectTo: '/strategy-centre',

@@ -5,7 +5,7 @@ import { DialogService }  from './shared';
 import {HeroService   }  from './heroes';
 
 @Component({
-  selector: 'my-app',
+  selector: 'sg-app',
   template: `
     <h1 class="title">Component Router</h1>
     <nav>

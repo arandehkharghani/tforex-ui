@@ -7,7 +7,7 @@ import * as shared from '../shared';
 
 @Component({
   template: `
-  <my-error></my-error>
+  <sg-error></sg-error>
   
     <h2>Strategy Centre</h2>
     <router-outlet></router-outlet>

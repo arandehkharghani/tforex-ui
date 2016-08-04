@@ -2,15 +2,15 @@ import * as shared from '../../shared';
 
 export interface Strategy {
 
-    id: string;
+    id?: string;
 
-    name: string;
+    name?: string;
 
-    description: string;
+    description?: string;
 
-    createdTime: Date;
+    createdTime?: Date;
 
-    isActive: boolean;
+    isActive?: boolean;
 
-    granularity: shared.GranularityEnum;
+    granularity?: shared.GranularityEnum;
 }

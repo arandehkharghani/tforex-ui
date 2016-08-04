@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import * as shared from '../../../shared';
 
 @Component({
-    selector: 'my-error',
+    selector: 'sg-error',
     template: `
 <div class="alert alert-danger" *ngFor='let error of _errors'>
     <a href="#" class="close" data-dismiss="alert" aria-label="close"(click)='onCloseAlert(error)'>&times;</a>
@@ -21,11 +21,25 @@ import * as shared from '../../../shared';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
+
 export class ErrorComponent implements OnInit, OnDestroy {
     private _errors: shared.Error[] = [];
     private _subscription: Subscription;
 
-    constructor(private _http: Http, private _cdr: ChangeDetectorRef) { }
+    constructor(private _http: Http, private _cdr: ChangeDetectorRef) {
+        let o = { key1: 'value1', key2: 'value2' };
+
+        label:
+        for (let v in o) {
+            if (v) {
+                console.log(v);
+                console.log(o[v]);
+            } else {
+                break label;
+            }
+        }
+    }
+
 
     public ngOnInit() {
         this._subscription = (<shared.HttpService>this._http).error$.subscribe(

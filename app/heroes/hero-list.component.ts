@@ -26,7 +26,8 @@ export class HeroListComponent implements OnInit, OnDestroy {
 
   constructor(
     private service: HeroService,
-    private router: Router) {}
+    private router: Router) {
+     }
 
   public ngOnInit() {
     this.sub = this.router
