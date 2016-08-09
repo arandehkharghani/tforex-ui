@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute }       from '@angular/router';
 import { Observable }                   from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
@@ -28,6 +28,7 @@ const ID_CONST = 'id';
 })
 
 export class CrisisDetailComponent implements OnInit, OnDestroy {
+  @Input() private test;
   private crisis: Crisis;
   private editName: string;
   private sub: any;
@@ -37,7 +38,7 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private dialogService: DialogService
-    ) { }
+  ) { }
 
   public ngOnInit() {
     this.sub = this.route
@@ -89,7 +90,7 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
     // so that the CrisisListComponent can select that hero.
     // Add a totally useless `foo` parameter for kicks.
     // Absolute link
-    this.router.navigate(['/crisis-center', {id: crisisId, foo: 'foo'}]);
+    this.router.navigate(['/crisis-center', { id: crisisId, foo: 'foo' }]);
   }
 }
 

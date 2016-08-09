@@ -22,7 +22,9 @@ export class StrategyListComponent implements OnInit, OnDestroy {
     ) { }
 
     public ngOnInit() {
-        this._strategiesSubscription = this._service.get().subscribe(
+  //      window.location.href = 'http://localhost:10020/auth/google';
+
+        this._strategiesSubscription = this._service.signin().subscribe(
             strategies => this._strategies = strategies,
             error => console.log('COMPONENT', error)
         );

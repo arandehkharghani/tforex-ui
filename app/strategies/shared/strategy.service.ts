@@ -1,6 +1,8 @@
 import {Http, Headers, RequestOptionsArgs, Response, URLSearchParams} from '@angular/http';
-import {Injectable, Optional} from '@angular/core';
+import {Injectable, Inject, Optional} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+
+import { AppSettings, appSettings }                                from '../../shared';
 
 import * as models from '../../strategies';
 
@@ -9,9 +11,9 @@ export class StrategyService {
     protected basePath = 'http://localhost:10010/';
     public defaultHeaders: Headers = new Headers();
 
-    constructor(protected http: Http, @Optional() basePath: string) {
-        if (basePath) {
-            this.basePath = basePath;
+    constructor(protected http: Http, @Inject(appSettings) private _appSettings: AppSettings) {
+        if (_appSettings.apiStrategyBasePath) {
+            this.basePath = _appSettings.apiStrategyBasePath;
         }
     }
 
@@ -59,6 +61,21 @@ export class StrategyService {
             search: queryParameters,
         };
         requestOptions.body = JSON.stringify(strategy);
+
+        return this.http.request(path, requestOptions)
+            .map((response: Response) => response.json());
+    }
+    public signin() {
+         const path = this._appSettings.apiGatewayBasePath + '/auth/google';
+
+        let queryParameters = new URLSearchParams();
+        let headerParams = this.defaultHeaders;
+
+        let requestOptions: RequestOptionsArgs = {
+            method: 'GET',
+            headers: headerParams,
+            search: queryParameters,
+        };
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => response.json());

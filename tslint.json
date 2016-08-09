@@ -1,6 +1,7 @@
 {
   "rulesDirectory": [
-    "node_modules/codelyzer"
+    "node_modules/codelyzer",
+    "tslint-rules"
   ],
   "rules": {
     "directive-selector-name": [true, "camelCase"],
@@ -22,6 +23,8 @@
   "component-class-suffix": true,
   "directive-class-suffix": true,
   //"import-destructuring-spacing": true
+  "private-property-underscore-prefix" : true,
+
     "class-name": true,
     "comment-format": [true, "check-space"],   ///////  whitespace after comment //comment => // comment
     "curly": true,

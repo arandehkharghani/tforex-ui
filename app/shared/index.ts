@@ -1,3 +1,5 @@
+export * from './app-settings';
+
 export * from './enums/error.enum';
 export * from './enums/granularity.enum';
 
