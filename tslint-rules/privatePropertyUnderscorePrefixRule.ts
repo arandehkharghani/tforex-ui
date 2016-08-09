@@ -31,7 +31,7 @@ class UnderscorePrivateWalker extends Ng2Walker {
     protected visitPropertyDeclaration(node: ts.PropertyDeclaration) {
         if (node.getFirstToken().kind === ts.SyntaxKind.PrivateKeyword) {
             if (node.name.getText()[0] !== '_') {
-                //       this.addFailure(this.createFailure(node.getStart(), node.getWidth(), failureUnderscoreMissing + node.getText()));
+                this.addFailure(this.createFailure(node.getStart(), node.getWidth(), failureUnderscoreMissing + node.getText()));
             }
         }
         super.visitPropertyDeclaration(node);

@@ -28,10 +28,9 @@ const ID_CONST = 'id';
 })
 
 export class CrisisDetailComponent implements OnInit, OnDestroy {
-  @Input() private test;
-  private crisis: Crisis;
-  private editName: string;
-  private sub: any;
+  private _crisis: Crisis;
+  private _editName: string;
+  private _sub: any;
 
   constructor(
     private service: CrisisService,
@@ -41,15 +40,15 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit() {
-    this.sub = this.route
+    this._sub = this.route
       .params
       .subscribe(params => {
         let id = +params[ID_CONST];
         this.service.getCrisis(id)
           .then(crisis => {
             if (crisis) {
-              this.editName = crisis.name;
-              this.crisis = crisis;
+              this._editName = crisis.name;
+              this._crisis = crisis;
             } else { // id not found
               this.gotoCrises();
             }
@@ -58,8 +57,8 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
+    if (this._sub) {
+      this._sub.unsubscribe();
     }
   }
 
@@ -68,13 +67,13 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
   }
 
   public save() {
-    this.crisis.name = this.editName;
+    this._crisis.name = this._editName;
     this.gotoCrises();
   }
 
   public canDeactivate(): Observable<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
-    if (!this.crisis || this.crisis.name === this.editName) {
+    if (!this._crisis || this._crisis.name === this._editName) {
       return true;
     }
     // Otherwise ask the user with the dialog service and return its
@@ -85,7 +84,7 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
   }
 
   public gotoCrises() {
-    let crisisId = this.crisis ? this.crisis.id : null;
+    let crisisId = this._crisis ? this._crisis.id : null;
     // Pass along the hero id if available
     // so that the CrisisListComponent can select that hero.
     // Add a totally useless `foo` parameter for kicks.
