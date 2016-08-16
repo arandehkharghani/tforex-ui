@@ -19,10 +19,10 @@ const ID_CONST = 'id';
   `,
 })
 export class HeroListComponent implements OnInit, OnDestroy {
-  private heroes: Hero[];
+  public heroes: Hero[];
 
-  private selectedId: number;
-  private sub: any;
+  public selectedId: number;
+  public sub: any;
 
   constructor(
     private service: HeroService,

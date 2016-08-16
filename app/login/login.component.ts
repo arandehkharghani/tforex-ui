@@ -12,7 +12,7 @@ import { AuthService } from '../shared';
     </p>`,
 })
 export class LoginComponent {
-  private message: string;
+  public message: string;
 
   constructor(public authService: AuthService, public router: Router) {
     this.setMessage();

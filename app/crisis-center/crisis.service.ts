@@ -16,7 +16,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CrisisService {
 
-  private static nextCrisisId = 100;
+  private static _nextCrisisId = 100;
 
   public getCrises() { return crisesPromise; }
 
@@ -29,7 +29,7 @@ export class CrisisService {
   public addCrisis(name: string) {
     name = name.trim();
     if (name) {
-      let crisis = new Crisis(CrisisService.nextCrisisId++, name);
+      let crisis = new Crisis(CrisisService._nextCrisisId++, name);
       crisesPromise.then(crises => crises.push(crisis));
     }
   }

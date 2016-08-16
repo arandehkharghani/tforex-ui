@@ -23,9 +23,9 @@ const ID_CONST = 'id';
   `,
 })
 export class HeroDetailComponent implements OnInit, OnDestroy  {
-  private hero: Hero;
+  public hero: Hero;
 
-  private sub: any;
+  public sub: any;
 
   constructor(
     private route: ActivatedRoute,

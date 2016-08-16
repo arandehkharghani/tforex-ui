@@ -22,12 +22,12 @@ export class StrategyListComponent implements OnInit, OnDestroy {
     ) { }
 
     public ngOnInit() {
-  //      window.location.href = 'http://localhost:10020/auth/google';
+        window.location.href = 'http://localhost:10020/auth/google';
 
-        this._strategiesSubscription = this._service.signin().subscribe(
-            strategies => this._strategies = strategies,
-            error => console.log('COMPONENT', error)
-        );
+      //  this._strategiesSubscription = this._service.signin().subscribe(
+      //      strategies => this._strategies = strategies,
+      //      error => console.log('COMPONENT', error)
+      //  );
     }
     public ngOnDestroy() {
         if (this._strategiesSubscription) {

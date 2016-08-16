@@ -20,9 +20,9 @@ const ID_CONST = 'id';
 
 
 export class CrisisListComponent implements OnInit, OnDestroy {
-  private crises: Crisis[];
-  private selectedId: number;
-  private sub: any;
+  public crises: Crisis[];
+  public selectedId: number;
+  public sub: any;
 
   constructor(
     private service: CrisisService,
