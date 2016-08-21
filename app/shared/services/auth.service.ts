@@ -7,20 +7,23 @@ import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class AuthService {
-  public isLoggedIn: boolean = false;
+  private _isLoggedIn: boolean = false;
+  private _redirectUrl: string;
+  private _userName: string;
+
+  public get userName() { return this._userName; }
+  public get isLoggedIn() { return this._isLoggedIn; }
+  public get redirectUrl() { return this._redirectUrl; }
+  public set redirectUrl(value: string) { this._redirectUrl = value; }
 
   public login() {
-    return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
+    return Observable.of(true).delay(1000).do(val => {
+      this._isLoggedIn = true;
+      this._userName = 'aran';
+    });
   }
 
   public logout() {
-    this.isLoggedIn = false;
+    this._isLoggedIn = false;
   }
 }
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

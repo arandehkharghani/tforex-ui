@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute }       from '@angular/router';
 
-import { Hero, HeroService } from '../heroes';
+import { Hero, HeroService } from '../hero';
 
-const ID_CONST = 'id';
+const idConst = 'id';
 
 @Component({
   template: `
@@ -34,7 +34,7 @@ export class HeroDetailComponent implements OnInit, OnDestroy  {
 
   public ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       let id = +params[ID_CONST]; // (+) converts string 'id' to a number
+       let id = +params[idConst]; // (+) converts string 'id' to a number
        this.service.getHero(id).then(hero => this.hero = hero);
      });
 

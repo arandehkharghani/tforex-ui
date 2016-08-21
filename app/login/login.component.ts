@@ -1,49 +1,53 @@
-import { Component }   from '@angular/core';
-import { Router }      from '@angular/router';
-import { AuthService } from '../shared';
+import { Component }        from '@angular/core';
+import { Router,
+         NavigationExtras } from '@angular/router';
+import { AuthService }      from '../shared';
 
 @Component({
   template: `
     <h2>LOGIN</h2>
-    <p>{{message}}</p>
+    <p>{{_message}}</p>
     <p>
-      <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
-      <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+      <button (click)="login()"  *ngIf="!_authService._isLoggedIn">Login</button>
+      <button (click)="logout()" *ngIf="_authService._isLoggedIn">Logout</button>
     </p>`,
 })
 export class LoginComponent {
-  public message: string;
+  private _message: string;
 
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public _authService: AuthService, public router: Router) {
     this.setMessage();
   }
 
   private setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+    this._message = 'Logged ' + (this._authService.isLoggedIn ? 'in' : 'out');
   }
 
   private login() {
-    this.message = 'Trying to log in ...';
+    this._message = 'Trying to log in ...';
 
-    this.authService.login().subscribe(() => {
+    this._authService.login().subscribe(() => {
       this.setMessage();
-      if (this.authService.isLoggedIn) {
-        // Todo: capture where the user was going and nav there.
-        // Meanwhile redirect the user to the crisis admin
-        this.router.navigate(['/crisis-center/admin']);
+      if (this._authService.isLoggedIn) {
+        // Get the redirect URL from our auth service
+        // If no redirect has been set, use the default
+        let redirect = this._authService.redirectUrl ? this._authService.redirectUrl : '/strategies';
+
+        // Set our navigation extras object
+        // that passes on our global query params and fragment
+        let navigationExtras: NavigationExtras = {
+          preserveQueryParams: true,
+          preserveFragment: true,
+        };
+
+        // Redirect the user
+        this.router.navigate([redirect], navigationExtras);
       }
     });
   }
 
   private logout() {
-    this.authService.logout();
+    this._authService.logout();
     this.setMessage();
   }
 }
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

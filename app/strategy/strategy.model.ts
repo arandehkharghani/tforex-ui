@@ -1,4 +1,4 @@
-import * as shared from '../../shared';
+import * as shared from '../shared';
 
 export interface Strategy {
 

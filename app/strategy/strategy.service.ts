@@ -2,9 +2,9 @@ import {Http, Headers, RequestOptionsArgs, Response, URLSearchParams} from '@ang
 import {Injectable, Inject, Optional} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import { AppSettings, appSettings }                                from '../../shared';
+import { AppSettings, appSettings }                                from '../shared';
 
-import * as models from '../../strategies';
+import * as models from '../strategy';
 
 @Injectable()
 export class StrategyService {

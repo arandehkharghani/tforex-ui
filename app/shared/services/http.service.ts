@@ -12,7 +12,7 @@ import 'rxjs/Rx';
 
 import * as shared from '../../shared';
 
-export let HTTP_SERVICE_PROVIDER = {
+export const httpServiceProvider = {
     provide: Http, useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) =>
         new HttpService(backend, defaultOptions),
     deps: [XHRBackend, RequestOptions],

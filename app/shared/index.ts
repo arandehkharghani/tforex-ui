@@ -11,8 +11,9 @@ export * from './services/auth.service';
 export * from './services/dialog.service';
 export * from './services/http.service';
 
-export * from './guards/auth.guard';
-export * from './guards/can-deactivate.guard';
+export * from './guards/auth-guard.service';
+export * from './guards/can-deactivate-guard.service';
 
 export * from './layout/error/error.component';
 
+export * from './shared.module';

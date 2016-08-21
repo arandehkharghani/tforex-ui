@@ -1,10 +1,12 @@
 // TODO SOMEDAY: Feature Componetized like CrisisCenter
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { Hero, HeroService } from '../heroes';
+import { Subscription }       from 'rxjs/Subscription';
+import { Hero, HeroService } from '../hero';
 
-const ID_CONST = 'id';
+const idConst = 'id';
 
 @Component({
   template: `
@@ -18,43 +20,35 @@ const ID_CONST = 'id';
     </ul>
   `,
 })
+
 export class HeroListComponent implements OnInit, OnDestroy {
   public heroes: Hero[];
 
-  public selectedId: number;
-  public sub: any;
+  private _selectedId: number;
+  private _sub: Subscription;
 
   constructor(
     private service: HeroService,
-    private router: Router) {
-     }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   public ngOnInit() {
-    this.sub = this.router
-      .routerState
+    this._sub = this.route
       .queryParams
       .subscribe(params => {
-        this.selectedId = +params[ID_CONST];
+        this._selectedId = +params[idConst];
         this.service.getHeroes()
           .then(heroes => this.heroes = heroes);
       });
   }
-
   public ngOnDestroy() {
-    this.sub.unsubscribe();
+    this._sub.unsubscribe();
   }
 
-  private isSelected(hero: Hero) { return hero.id === this.selectedId; }
+  private isSelected(hero: Hero) { return hero.id === this._selectedId; }
 
   private onSelect(hero: Hero) {
-    this.router.navigate(['/hero', hero.id]);
+    this.router.navigate(['/heroes', hero.id]);
   }
 
 }
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

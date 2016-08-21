@@ -6,19 +6,19 @@ import 'rxjs/add/observable/fromPromise';
 import { Crisis, CrisisService } from './crisis.service';
 import { DialogService } from '../shared/services/dialog.service';
 
-const ID_CONST = 'id';
+const idConst = 'id';
 
 @Component({
   template: `
-  <div *ngIf="crisis">
+  <div *ngIf="_crisis">
     <h3>"{{editName}}"</h3>
     <div>
-      <label>Id: </label>{{crisis.id}}</div>
+      <label>Id: </label>{{_crisis.id}}</div>
     <div>
       <label>Name: </label>
-      <input [(ngModel)]="editName" placeholder="name"/>
+      <input [(ngModel)]="_editName" placeholder="name"/>
     </div>
-    <p>
+    <p> 
       <button (click)="save()">Save</button>
       <button (click)="cancel()">Cancel</button>
     </p>
@@ -27,39 +27,29 @@ const ID_CONST = 'id';
   styles: ['input {width: 20em}'],
 })
 
-export class CrisisDetailComponent implements OnInit, OnDestroy {
+export class CrisisDetailComponent implements OnInit {
   private _crisis: Crisis;
   private _editName: string;
-  private _sub: any;
 
   constructor(
     private service: CrisisService,
     private route: ActivatedRoute,
     private router: Router,
     private dialogService: DialogService
-  ) { }
-
-  public ngOnInit() {
-    this._sub = this.route
-      .params
-      .subscribe(params => {
-        let id = +params[ID_CONST];
-        this.service.getCrisis(id)
-          .then(crisis => {
-            if (crisis) {
-              this._editName = crisis.name;
-              this._crisis = crisis;
-            } else { // id not found
-              this.gotoCrises();
-            }
-          });
-      });
+  ) {
   }
 
-  public ngOnDestroy() {
-    if (this._sub) {
-      this._sub.unsubscribe();
-    }
+  public ngOnInit() {
+    let id = parseInt(this.route.snapshot.params['id'], 10);
+    this.service.getCrisis(id)
+      .then(crisis => {
+        if (crisis) {
+          this._editName = crisis.name;
+          this._crisis = crisis;
+        } else { // id not found
+          this.gotoCrises();
+        }
+      });
   }
 
   public cancel() {
@@ -89,7 +79,7 @@ export class CrisisDetailComponent implements OnInit, OnDestroy {
     // so that the CrisisListComponent can select that hero.
     // Add a totally useless `foo` parameter for kicks.
     // Absolute link
-    this.router.navigate(['/crisis-center', { id: crisisId, foo: 'foo' }]);
+    this.router.navigate(['/crises', { id: crisisId, foo: 'foo' }]);
   }
 }
 
