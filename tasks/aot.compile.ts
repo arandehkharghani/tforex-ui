@@ -21,6 +21,7 @@ const copyFile = (name: string, from: string, to: string, mod: any = (f: string)
 gulp.task('aot-compile', (done) => {
     tsc.main('./', undefined, codegen)
         .catch((e) => {
+            console.log('test');
             console.error(e.stack);
             console.error('Compilation failed');
             process.exit(1);
