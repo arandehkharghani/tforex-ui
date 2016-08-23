@@ -1,0 +1,284 @@
+(function () {
+'use strict';
+
+System.registerDynamic("app/crisis/crisis.service.js", ["@angular/core"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+      r = Reflect.decorate(decorators, target, key, desc);
+    else
+      for (var i = decorators.length - 1; i >= 0; i--)
+        if (d = decorators[i])
+          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+  };
+  var __metadata = (this && this.__metadata) || function(k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+      return Reflect.metadata(k, v);
+  };
+  var Crisis = (function() {
+    function Crisis(id, name) {
+      this.id = id;
+      this.name = name;
+    }
+    return Crisis;
+  }());
+  exports.Crisis = Crisis;
+  var CRISES = [new Crisis(1, 'Dragon Burning Cities'), new Crisis(2, 'Sky Rains Great White Sharks'), new Crisis(3, 'Giant Asteroid Heading For Earth'), new Crisis(4, 'Procrastinators Meeting Delayed Again')];
+  var crisesPromise = Promise.resolve(CRISES);
+  var core_1 = $__require('@angular/core');
+  var CrisisService = (function() {
+    function CrisisService() {}
+    CrisisService.prototype.getCrises = function() {
+      return crisesPromise;
+    };
+    CrisisService.prototype.getCrisis = function(id) {
+      return crisesPromise.then(function(crises) {
+        return crises.filter(function(c) {
+          return c.id === +id;
+        })[0];
+      });
+    };
+    CrisisService.prototype.addCrisis = function(name) {
+      name = name.trim();
+      if (name) {
+        var crisis_1 = new Crisis(CrisisService._nextCrisisId++, name);
+        crisesPromise.then(function(crises) {
+          return crises.push(crisis_1);
+        });
+      }
+    };
+    CrisisService._nextCrisisId = 100;
+    CrisisService = __decorate([core_1.Injectable(), __metadata('design:paramtypes', [])], CrisisService);
+    return CrisisService;
+  }());
+  exports.CrisisService = CrisisService;
+  return module.exports;
+});
+
+System.registerDynamic("app/crisis/crisis-detail.component.js", ["@angular/core", "@angular/router", "rxjs/Observable", "rxjs/add/observable/fromPromise", "./crisis.service", "../shared/services/dialog.service"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+      r = Reflect.decorate(decorators, target, key, desc);
+    else
+      for (var i = decorators.length - 1; i >= 0; i--)
+        if (d = decorators[i])
+          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+  };
+  var __metadata = (this && this.__metadata) || function(k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+      return Reflect.metadata(k, v);
+  };
+  var core_1 = $__require('@angular/core');
+  var router_1 = $__require('@angular/router');
+  var Observable_1 = $__require('rxjs/Observable');
+  $__require('rxjs/add/observable/fromPromise');
+  var crisis_service_1 = $__require('./crisis.service');
+  var dialog_service_1 = $__require('../shared/services/dialog.service');
+  var idConst = 'id';
+  var CrisisDetailComponent = (function() {
+    function CrisisDetailComponent(service, route, router, dialogService) {
+      this.service = service;
+      this.route = route;
+      this.router = router;
+      this.dialogService = dialogService;
+    }
+    CrisisDetailComponent.prototype.ngOnInit = function() {
+      var _this = this;
+      var id = parseInt(this.route.snapshot.params['id'], 10);
+      this.service.getCrisis(id).then(function(crisis) {
+        if (crisis) {
+          _this._editName = crisis.name;
+          _this._crisis = crisis;
+        } else {
+          _this.gotoCrises();
+        }
+      });
+    };
+    CrisisDetailComponent.prototype.cancel = function() {
+      this.gotoCrises();
+    };
+    CrisisDetailComponent.prototype.save = function() {
+      this._crisis.name = this._editName;
+      this.gotoCrises();
+    };
+    CrisisDetailComponent.prototype.canDeactivate = function() {
+      if (!this._crisis || this._crisis.name === this._editName) {
+        return true;
+      }
+      var p = this.dialogService.confirm('Discard changes?');
+      var o = Observable_1.Observable.fromPromise(p);
+      return o;
+    };
+    CrisisDetailComponent.prototype.gotoCrises = function() {
+      var crisisId = this._crisis ? this._crisis.id : null;
+      this.router.navigate(['/crises', {
+        id: crisisId,
+        foo: 'foo'
+      }]);
+    };
+    CrisisDetailComponent = __decorate([core_1.Component({
+      template: "\n  <div *ngIf=\"_crisis\">\n    <h3>\"{{editName}}\"</h3>\n    <div>\n      <label>Id: </label>{{_crisis.id}}</div>\n    <div>\n      <label>Name: </label>\n      <input [(ngModel)]=\"_editName\" placeholder=\"name\"/>\n    </div>\n    <p> \n      <button (click)=\"save()\">Save</button>\n      <button (click)=\"cancel()\">Cancel</button>\n    </p>\n  </div>\n  ",
+      styles: ['input {width: 20em}']
+    }), __metadata('design:paramtypes', [crisis_service_1.CrisisService, router_1.ActivatedRoute, router_1.Router, dialog_service_1.DialogService])], CrisisDetailComponent);
+    return CrisisDetailComponent;
+  }());
+  exports.CrisisDetailComponent = CrisisDetailComponent;
+  return module.exports;
+});
+
+System.registerDynamic("app/crisis/crisis.routing.js", ["@angular/router", "../crisis", "../shared"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  var router_1 = $__require('@angular/router');
+  var crisis_1 = $__require('../crisis');
+  var shared_1 = $__require('../shared');
+  var routes = [{
+    path: '',
+    component: crisis_1.CrisisListComponent
+  }, {
+    path: ':id',
+    component: crisis_1.CrisisDetailComponent,
+    canDeactivate: [shared_1.CanDeactivateGuardService]
+  }];
+  exports.routing = router_1.RouterModule.forChild(routes);
+  return module.exports;
+});
+
+System.registerDynamic("app/crisis/crisis.module.js", ["@angular/core", "../crisis", "../shared"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+      r = Reflect.decorate(decorators, target, key, desc);
+    else
+      for (var i = decorators.length - 1; i >= 0; i--)
+        if (d = decorators[i])
+          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+  };
+  var __metadata = (this && this.__metadata) || function(k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+      return Reflect.metadata(k, v);
+  };
+  var core_1 = $__require('@angular/core');
+  var crisis = $__require('../crisis');
+  var shared_1 = $__require('../shared');
+  var CrisisModule = (function() {
+    function CrisisModule() {}
+    CrisisModule = __decorate([core_1.NgModule({
+      imports: [shared_1.SharedModule, crisis.routing],
+      declarations: [crisis.CrisisDetailComponent, crisis.CrisisListComponent],
+      providers: [crisis.CrisisService]
+    }), __metadata('design:paramtypes', [])], CrisisModule);
+    return CrisisModule;
+  }());
+  Object.defineProperty(exports, "__esModule", {value: true});
+  exports.default = CrisisModule;
+  return module.exports;
+});
+
+System.registerDynamic("app/crisis/index.js", ["./crisis.service", "./crisis-detail.component", "./crisis-list.component", "./crisis.routing", "./crisis.module"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  function __export(m) {
+    for (var p in m)
+      if (!exports.hasOwnProperty(p))
+        exports[p] = m[p];
+  }
+  __export($__require('./crisis.service'));
+  __export($__require('./crisis-detail.component'));
+  __export($__require('./crisis-list.component'));
+  __export($__require('./crisis.routing'));
+  __export($__require('./crisis.module'));
+  return module.exports;
+});
+
+System.registerDynamic("app/crisis/crisis-list.component.js", ["@angular/core", "@angular/router", "../crisis"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+      r = Reflect.decorate(decorators, target, key, desc);
+    else
+      for (var i = decorators.length - 1; i >= 0; i--)
+        if (d = decorators[i])
+          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+  };
+  var __metadata = (this && this.__metadata) || function(k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+      return Reflect.metadata(k, v);
+  };
+  var core_1 = $__require('@angular/core');
+  var router_1 = $__require('@angular/router');
+  var crisis_1 = $__require('../crisis');
+  var idConst = 'id';
+  var CrisisListComponent = (function() {
+    function CrisisListComponent(service, route, router) {
+      this.service = service;
+      this.route = route;
+      this.router = router;
+    }
+    CrisisListComponent.prototype.ngOnInit = function() {
+      var _this = this;
+      this._sub = this.route.params.subscribe(function(params) {
+        _this._selectedId = +params['id'];
+        _this.service.getCrises().then(function(crises) {
+          return _this._crises = crises;
+        });
+      });
+    };
+    CrisisListComponent.prototype.ngOnDestroy = function() {
+      if (this._sub) {
+        this._sub.unsubscribe();
+      }
+    };
+    CrisisListComponent.prototype.isSelected = function(crisis) {
+      return crisis.id === this._selectedId;
+    };
+    CrisisListComponent.prototype.onSelect = function(crisis) {
+      this.router.navigate(['/crises', crisis.id]);
+    };
+    CrisisListComponent = __decorate([core_1.Component({template: "\n    <ul class=\"items\">\n      <li *ngFor=\"let crisis of _crises\"\n        [class.selected]=\"isSelected(crisis)\"\n        (click)=\"onSelect(crisis)\">\n        <span class=\"badge\">{{crisis.id}}</span> {{crisis.name}}\n      </li>\n    </ul>\n  "}), __metadata('design:paramtypes', [crisis_1.CrisisService, router_1.ActivatedRoute, router_1.Router])], CrisisListComponent);
+    return CrisisListComponent;
+  }());
+  exports.CrisisListComponent = CrisisListComponent;
+  return module.exports;
+});
+
+}());

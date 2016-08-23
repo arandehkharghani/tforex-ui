@@ -82,3 +82,6 @@ $RECYCLE.BIN/
 # Js files
 *.js
 *.js.map
+*.ngfactory.ts
+
+**/codegen

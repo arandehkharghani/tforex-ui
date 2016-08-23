@@ -1,0 +1,122 @@
+(function () {
+'use strict';
+
+System.registerDynamic("app/app.routing.js", ["@angular/router"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  var router_1 = $__require('@angular/router');
+  exports.routes = [{
+    path: '',
+    redirectTo: '/strategies',
+    pathMatch: 'full'
+  }, {
+    path: 'strategies',
+    loadChildren: 'app/strategy/strategy.module'
+  }, {
+    path: 'login',
+    loadChildren: 'app/login/login.module'
+  }, {
+    path: 'crises',
+    loadChildren: 'app/crisis/crisis.module'
+  }, {
+    path: 'heroes',
+    loadChildren: 'app/hero/hero.module'
+  }];
+  exports.routing = router_1.RouterModule.forRoot(exports.routes);
+  return module.exports;
+});
+
+System.registerDynamic("app/app.component.js", ["@angular/core"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+      r = Reflect.decorate(decorators, target, key, desc);
+    else
+      for (var i = decorators.length - 1; i >= 0; i--)
+        if (d = decorators[i])
+          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+  };
+  var __metadata = (this && this.__metadata) || function(k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+      return Reflect.metadata(k, v);
+  };
+  var core_1 = $__require('@angular/core');
+  var AppComponent = (function() {
+    function AppComponent() {}
+    AppComponent = __decorate([core_1.Component({
+      selector: 'sg-app',
+      template: "\n    <h1 class=\"title\">UI</h1>\n     <nav>\n      <a routerLink=\"/strategies\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{ exact: true }\">Strategies</a>\n      <a routerLink=\"/heroes\" routerLinkActive=\"active\">Heroes</a>\n      <a routerLink=\"/crises\" routerLinkActive=\"active\">Crisis</a>\n      <a routerLink=\"/login\" routerLinkActive=\"active\">Login</a>\n    </nav>    \n    <router-outlet></router-outlet>\n  "
+    }), __metadata('design:paramtypes', [])], AppComponent);
+    return AppComponent;
+  }());
+  exports.AppComponent = AppComponent;
+  return module.exports;
+});
+
+System.registerDynamic("app/app.module.js", ["@angular/core", "@angular/platform-browser", "@angular/http", "./shared", "./app.routing", "./app.component"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
+    var c = arguments.length,
+        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+        d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+      r = Reflect.decorate(decorators, target, key, desc);
+    else
+      for (var i = decorators.length - 1; i >= 0; i--)
+        if (d = decorators[i])
+          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+  };
+  var __metadata = (this && this.__metadata) || function(k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+      return Reflect.metadata(k, v);
+  };
+  var core_1 = $__require('@angular/core');
+  var platform_browser_1 = $__require('@angular/platform-browser');
+  var http_1 = $__require('@angular/http');
+  var shared_1 = $__require('./shared');
+  var shared_2 = $__require('./shared');
+  var app_routing_1 = $__require('./app.routing');
+  var app_component_1 = $__require('./app.component');
+  var AppModule = (function() {
+    function AppModule() {}
+    AppModule = __decorate([core_1.NgModule({
+      declarations: [app_component_1.AppComponent],
+      imports: [platform_browser_1.BrowserModule, app_routing_1.routing, shared_1.SharedModule.forRoot(), http_1.HttpModule],
+      bootstrap: [app_component_1.AppComponent],
+      providers: [core_1.provide(shared_2.appSettings, {useValue: shared_2.constAppSettings})]
+    }), __metadata('design:paramtypes', [])], AppModule);
+    return AppModule;
+  }());
+  exports.AppModule = AppModule;
+  return module.exports;
+});
+
+System.registerDynamic("app/main.js", ["@angular/platform-browser-dynamic", "./app.module"], true, function($__require, exports, module) {
+  "use strict";
+  ;
+  var define,
+      global = this || self,
+      GLOBAL = global;
+  var platform_browser_dynamic_1 = $__require('@angular/platform-browser-dynamic');
+  var app_module_1 = $__require('./app.module');
+  platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
+  return module.exports;
+});
+
+}());

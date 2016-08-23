@@ -7,4 +7,4 @@ import * as login            from '../login';
   imports:      [ SharedModule, login.routing ],
   declarations: [ login.LoginComponent ],
 })
-export default class UserModule { }
+export default class LoginModule { }
