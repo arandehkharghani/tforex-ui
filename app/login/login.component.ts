@@ -1,21 +1,23 @@
-import { Component }        from '@angular/core';
+import { Component, Inject }        from '@angular/core';
 import { Router,
-         NavigationExtras } from '@angular/router';
+  NavigationExtras } from '@angular/router';
 import { AuthService }      from '../shared';
+
+import { AppSettings, appSettings }                                from '../shared';
 
 @Component({
   template: `
     <h2>LOGIN</h2>
     <p>{{_message}}</p>
     <p>
-      <button (click)="login()"  *ngIf="!_authService._isLoggedIn">Login</button>
+      <button (click)="login('auth/google')"  *ngIf="!_authService._isLoggedIn">Login (google)</button>
       <button (click)="logout()" *ngIf="_authService._isLoggedIn">Logout</button>
     </p>`,
 })
 export class LoginComponent {
   private _message: string;
 
-  constructor(public _authService: AuthService, public router: Router) {
+  constructor(public _authService: AuthService, public router: Router, @Inject(appSettings) private _appSettings: AppSettings) {
     this.setMessage();
   }
 
@@ -23,9 +25,12 @@ export class LoginComponent {
     this._message = 'Logged ' + (this._authService.isLoggedIn ? 'in' : 'out');
   }
 
-  private login() {
+  private login(path: string) {
     this._message = 'Trying to log in ...';
 
+    window.location.href = this._appSettings.apiGatewayBasePath +  path;
+
+/*
     this._authService.login().subscribe(() => {
       this.setMessage();
       if (this._authService.isLoggedIn) {
@@ -44,6 +49,7 @@ export class LoginComponent {
         this.router.navigate([redirect], navigationExtras);
       }
     });
+*/
   }
 
   private logout() {
