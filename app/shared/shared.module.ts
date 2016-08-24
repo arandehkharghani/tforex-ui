@@ -32,7 +32,7 @@ export class SharedModule {
         };
     }
 }
-
+/*
 @NgModule({
     exports: [SharedModule],
     providers: [
@@ -45,3 +45,4 @@ export class SharedModule {
 })
 
 export class SharedRootModule { }
+*/
