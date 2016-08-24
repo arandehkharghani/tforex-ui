@@ -30,6 +30,7 @@ export class LoginComponent {
 
     window.location.href = this._appSettings.apiGatewayBasePath +  path;
 
+// this is a test
 /*
     this._authService.login().subscribe(() => {
       this.setMessage();
