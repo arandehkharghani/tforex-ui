@@ -7,7 +7,7 @@ import { writeFileSync, readFileSync } from 'fs';
 import { CodeGenerator } from '@angular/compiler-cli';
 
 let config = require('../gulp.config')();
-
+/*
 function codegen(
     ngOptions: tsc.AngularCompilerOptions, program: ts.Program, host: ts.CompilerHost) {
     return CodeGenerator.create(ngOptions, program, host).codegen();
@@ -27,3 +27,4 @@ gulp.task('aot-compile', (done) => {
        });
    done();
 });
+*/

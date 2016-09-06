@@ -32,6 +32,7 @@ export class SharedModule {
         };
     }
 }
+
 /*
 @NgModule({
     exports: [SharedModule],
