@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
 import { SharedModule }   from './shared';
-import { constAppSettings, appSettings } from './shared';
+import { constAppSettings, appSettings, CoreModule } from './core';
 
 import { routing }        from './app.routing';
 import { AppComponent }   from './app.component';
@@ -14,12 +14,9 @@ import { AppComponent }   from './app.component';
     imports: [
         BrowserModule,
         routing,
-        SharedModule.forRoot(),
+        CoreModule,
         HttpModule,
     ],
     bootstrap: [AppComponent],
-    providers: [
-        { provide: appSettings , useValue: constAppSettings },
-    ],
 })
 export class AppModule { }

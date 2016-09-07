@@ -2,7 +2,7 @@ import { Routes,
   RouterModule }  from '@angular/router';
 
 import { CrisisListComponent, CrisisDetailComponent }    from '../crisis';
-import { AuthGuardService, CanDeactivateGuardService }             from '../shared';
+import { AuthGuardService, CanDeactivateGuardService }             from '../core';
 
 const routes: Routes = [
   { path: '',    component: CrisisListComponent },

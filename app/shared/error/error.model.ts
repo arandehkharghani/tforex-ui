@@ -1,11 +1,10 @@
-import * as enums from '../../shared';
-
+import * as shared from '../../shared';
 
 export interface ErrorResponse {
     message?: string;
 }
 
 export class Error {
-    public type: enums.ErrorTypeEnum;
+    public type: shared.ErrorTypeEnum;
     public data: any;
 }

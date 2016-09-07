@@ -1,4 +1,4 @@
-import * as shared from '../shared';
+import * as core from '../core';
 
 export interface Strategy {
 
@@ -12,5 +12,5 @@ export interface Strategy {
 
     isActive?: boolean;
 
-    granularity?: shared.GranularityEnum;
+    granularity?: core.GranularityEnum;
 }

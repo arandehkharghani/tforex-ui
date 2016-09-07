@@ -7,6 +7,8 @@ import { Crisis, CrisisService } from '../crisis';
 
 import * as shared from '../shared';
 
+import * as core from '../core';
+
 const idConst = 'id';
 
 @Component({
@@ -32,7 +34,7 @@ export class CrisisListComponent implements OnInit, OnDestroy {
     private _http: Http) { }
 
   public ngOnInit() {
-    alert((<shared.HttpService>this._http).owner);
+    alert((<core.HttpService>this._http).owner);
     this._sub = this.route
       .params
       .subscribe(params => {

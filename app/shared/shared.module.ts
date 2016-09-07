@@ -3,47 +3,19 @@ import { NgModule,
 import { CommonModule }        from '@angular/common';
 import { FormsModule }        from '@angular/forms';
 
-import { AuthGuardService, AuthService,
-    CanDeactivateGuardService, ErrorComponent,
-    HttpService, DialogService, httpServiceProvider }         from '../shared';
+import * as shared from '../shared';
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [
+        CommonModule,
+    ],
     declarations: [
-        ErrorComponent,
+        shared.ErrorComponent,
     ],
     exports: [
-        ErrorComponent,
         CommonModule,
         FormsModule,
+        shared.ErrorComponent,
     ],
 })
-export class SharedModule {
-    public static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SharedModule,
-            providers: [
-                AuthService,
-                AuthGuardService,
-                httpServiceProvider,
-                CanDeactivateGuardService,
-                DialogService,
-            ],
-        };
-    }
-}
-
-/*
-@NgModule({
-    exports: [SharedModule],
-    providers: [
-        AuthService,
-        AuthGuardService,
-        httpServiceProvider,
-        CanDeactivateGuardService,
-        DialogService,
-    ],
-})
-
-export class SharedRootModule { }
-*/
+export class SharedModule { }

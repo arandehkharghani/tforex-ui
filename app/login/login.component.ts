@@ -4,9 +4,7 @@ import { Router,
 
 import { Subscription }       from 'rxjs/Subscription';
 
-import { AuthService }      from '../shared';
-
-import { AppSettings, appSettings }                                from '../shared';
+import * as core from '../core';
 
 @Component({
   template: `
@@ -21,9 +19,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   private _message: string;
   private _sub: Subscription;
 
-  constructor(public _authService: AuthService, public router: Router,
+  constructor(public _authService: core.AuthService, public router: Router,
     private _route: ActivatedRoute,
-    @Inject(appSettings) private _appSettings: AppSettings) {
+    @Inject(core.appSettings) private _appSettings: core.AppSettings) {
     this.setMessage();
   }
 
