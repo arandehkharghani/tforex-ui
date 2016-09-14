@@ -9,6 +9,7 @@ const routes: Routes = [
     children: [
       { path: '',    component: HeroListComponent },
       { path: ':id', component: HeroDetailComponent },
+      { path: 'admin', component: HeroDetailComponent },
     ],
   },
 ];

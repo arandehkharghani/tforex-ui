@@ -4,6 +4,7 @@ import {
 
 import { CommonModule }      from '@angular/common';
 
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import * as core from '../core';
 
 @NgModule({
@@ -19,6 +20,7 @@ import * as core from '../core';
         core.httpServiceProvider,
         core.CanDeactivateGuardService,
         core.DialogService,
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
     ],
 })
 export class CoreModule {

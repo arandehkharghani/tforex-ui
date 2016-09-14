@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { SharedModule }   from './shared';
 import { constAppSettings, appSettings, CoreModule } from './core';
 
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
 import { routing }        from './app.routing';
 import { AppComponent }   from './app.component';
 
@@ -18,5 +20,8 @@ import { AppComponent }   from './app.component';
         HttpModule,
     ],
     bootstrap: [AppComponent],
+    providers: [
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
+    ],
 })
 export class AppModule { }

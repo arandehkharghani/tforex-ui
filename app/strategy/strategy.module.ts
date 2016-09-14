@@ -20,4 +20,4 @@ import * as strategy from '../strategy';
     strategy.StrategyService,
     strategy.StrategyResolveService],
 })
-export default class StrategyModule { }
+export class StrategyModule { }
