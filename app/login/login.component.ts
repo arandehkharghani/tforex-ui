@@ -1,6 +1,13 @@
 import { Component, Inject, OnInit, OnDestroy }        from '@angular/core';
 import { Router,
   NavigationExtras, ActivatedRoute } from '@angular/router';
+<<<<<<< HEAD
+=======
+
+import { Subscription }       from 'rxjs/Subscription';
+
+import { AuthService }      from '../shared';
+>>>>>>> 04ab8ac... updated lgin to store accessToken
 
 import { Subscription }       from 'rxjs/Subscription';
 
@@ -19,9 +26,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   private _message: string;
   private _sub: Subscription;
 
+<<<<<<< HEAD
   constructor(public _authService: core.AuthService, public router: Router,
     private _route: ActivatedRoute,
     @Inject(core.appSettings) private _appSettings: core.AppSettings) {
+=======
+  constructor(public _authService: AuthService, public router: Router,
+    private _route: ActivatedRoute,
+    @Inject(appSettings) private _appSettings: AppSettings) {
+>>>>>>> 04ab8ac... updated lgin to store accessToken
     this.setMessage();
   }
 
