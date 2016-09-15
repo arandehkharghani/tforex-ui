@@ -6,9 +6,17 @@ import * as crisis from '../crisis';
 import { SharedModule } from '../shared';
 
 @NgModule({
-  imports:      [ SharedModule, crisis.routing ],
-  declarations: [ crisis.CrisisDetailComponent, crisis.CrisisListComponent ],
-  providers:    [ crisis.CrisisService ],
+  imports: [
+    SharedModule,
+    crisis.routing,
+  ],
+  declarations: [
+    crisis.CrisisDetailComponent,
+    crisis.CrisisListComponent,
+  ],
+  providers: [
+    crisis.CrisisService,
+  ],
 })
 
-export default class CrisisModule {}
+export default class CrisisModule { }

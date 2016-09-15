@@ -2,7 +2,7 @@ import {Http, Headers, RequestOptionsArgs, Response, URLSearchParams} from '@ang
 import {Injectable, Inject, Optional} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import { AppSettings, appSettings }                                from '../shared';
+import { AppSettings, appSettings }                                from '../core';
 
 import * as models from '../strategy';
 
@@ -23,6 +23,8 @@ export class StrategyService {
      * @param id The id of a specific strategy
      */
     public get(id?: string, extraHttpRequestParams?: any): Observable<Array<models.Strategy>> {
+
+        console.log(`http-service owner at service level ${(<any>this.http).owner}`);
         const path = this.basePath + '/strategies';
 
         let queryParameters = new URLSearchParams();

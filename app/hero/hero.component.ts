@@ -2,14 +2,13 @@
 import { Component }   from '@angular/core';
 
 import { HeroService } from '../hero';
-import { AuthService } from '../shared';
+import { AuthService } from '../core';
 
 @Component({
   template: `
     <h2>Heroes of {{_userName}}</h2>
     <router-outlet></router-outlet>
   `,
-  providers: [HeroService],
 })
 export class HeroComponent {
   private _userName = '';

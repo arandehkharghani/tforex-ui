@@ -20,7 +20,7 @@ export class CrisisService {
 
   public getCrises() { return crisesPromise; }
 
-  public getCrisis(id: number | string) {
+  public getCrisis(id: number | string): Promise<Crisis> {
     return crisesPromise
       .then(crises => crises.filter(c => c.id === +id)[0]);
   }

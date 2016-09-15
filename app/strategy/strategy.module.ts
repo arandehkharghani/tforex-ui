@@ -1,6 +1,6 @@
 import { NgModule }           from '@angular/core';
 import { CommonModule }       from '@angular/common';
-import { FormsModule }        from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }        from '@angular/forms';
 
 import { SharedModule } from '../shared';
 
@@ -8,16 +8,18 @@ import * as strategy from '../strategy';
 
 @NgModule({
   imports: [
-    SharedModule,
     strategy.routing,
+    SharedModule,
   ],
   declarations: [
+    strategy.StrategyDetailComponent,
     strategy.StrategyListComponent,
     strategy.StrategyComponent,
-    strategy.StrategyDetailComponent,
   ],
   providers: [
+    strategy.StrategyResolveService,
     strategy.StrategyService,
-    strategy.StrategyResolveService],
+  ],
 })
-export default class StrategyModule { }
+export class StrategyModule {
+}

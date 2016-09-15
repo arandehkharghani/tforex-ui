@@ -1,9 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router }       from '@angular/router';
-
+import { Http } from '@angular/http';
 import { Subscription }          from 'rxjs/Subscription';
 
 import { Crisis, CrisisService } from '../crisis';
+
+import * as shared from '../shared';
+
+import * as core from '../core';
 
 const idConst = 'id';
 
@@ -26,9 +30,11 @@ export class CrisisListComponent implements OnInit, OnDestroy {
   constructor(
     private service: CrisisService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private _http: Http) { }
 
   public ngOnInit() {
+    alert((<core.HttpService>this._http).owner);
     this._sub = this.route
       .params
       .subscribe(params => {

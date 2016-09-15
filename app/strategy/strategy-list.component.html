@@ -1,7 +1,8 @@
 <ul class="items">
-      <li *ngFor="let strategy of _strategies"
-        [class.selected]="isSelected(strategy)"
-        (click)="onSelect(strategy)">
-        <span class="badge">{{strategy.id}}</span> {{strategy.name}}
-      </li>
-    </ul>
+  <li *ngFor="let strategy of _strategies" [class.selected]="isSelected(strategy)" (click)="onSelect(strategy)">
+    <span class="badge">{{strategy.id}}</span> {{strategy.name}}
+  </li>
+</ul>
+
+<button (click)='onClick()'>click</button>
+<sg-error></sg-error>

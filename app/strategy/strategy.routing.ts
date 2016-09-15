@@ -3,7 +3,7 @@ import { Routes,
 
 import { StrategyComponent, StrategyListComponent, StrategyDetailComponent, StrategyResolveService } from '../strategy';
 
-import { CanDeactivateGuardService } from '../shared';
+import { CanDeactivateGuardService } from '../core';
 
 const routes: Routes = [
   {
