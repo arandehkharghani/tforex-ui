@@ -5,13 +5,24 @@ import { Http } from '@angular/http';
 
 import * as strategy from '../strategy';
 import * as shared from '../shared';
+import * as core from '../core';
+
 
 @Component({
+<<<<<<< HEAD
     providers: [
         shared.httpServiceProvider,
         strategy.StrategyService,
     ],
     templateUrl: 'app/strategy/strategy-list.component.html',
+=======
+    moduleId: module.id,
+    providers: [
+        core.httpServiceProvider,
+        strategy.StrategyService,
+    ],
+    templateUrl: 'strategy-list.component.html',
+>>>>>>> 926b300838ea12d9824425e9f174cb05a5a60be0
 })
 export class StrategyListComponent implements OnInit, OnDestroy {
 
@@ -25,7 +36,11 @@ export class StrategyListComponent implements OnInit, OnDestroy {
         private _service: strategy.StrategyService,
         private _http: Http
     ) {
+<<<<<<< HEAD
         (<shared.HttpService>_http).owner = 'strategies';
+=======
+        (<core.HttpService>_http).owner = 'strategies';
+>>>>>>> 926b300838ea12d9824425e9f174cb05a5a60be0
     }
 
     public ngOnInit() {

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Observable }     from 'rxjs/Observable';
 
-import { DialogService } from '../shared';
+import { DialogService } from '../core';
 
 import { Strategy } from '../strategy';
 

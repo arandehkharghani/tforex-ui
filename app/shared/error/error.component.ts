@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
-import * as shared from '../../../shared';
+import * as shared from '../../shared';
 
 @Component({
     selector: 'sg-error',
