@@ -1,12 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { Http } from '@angular/http';
 
 import * as strategy from '../strategy';
 import * as shared from '../shared';
 
 @Component({
+    providers: [
+        shared.httpServiceProvider,
+        strategy.StrategyService,
+    ],
     templateUrl: 'app/strategy/strategy-list.component.html',
 })
 export class StrategyListComponent implements OnInit, OnDestroy {
@@ -18,8 +22,11 @@ export class StrategyListComponent implements OnInit, OnDestroy {
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
-        private _service: strategy.StrategyService
-    ) { }
+        private _service: strategy.StrategyService,
+        private _http: Http
+    ) {
+        (<shared.HttpService>_http).owner = 'strategies';
+    }
 
     public ngOnInit() {
         this._sub = this._route
@@ -28,7 +35,8 @@ export class StrategyListComponent implements OnInit, OnDestroy {
                 this._selectedId = params['id'];
                 this._service.get().subscribe(
                     data => this._strategies = data,
-                    error => console.log(error));
+                    error => console.log('ERRRRR')
+                );
             });
 
         // window.location.href = 'http://localhost:10020/auth/google';
@@ -43,7 +51,13 @@ export class StrategyListComponent implements OnInit, OnDestroy {
             this._sub.unsubscribe();
         }
     }
-
+    private onClick() {
+        console.log(`http-service owner at component level ${(<any>this._http).owner}`);
+        this._service.get().subscribe(
+            data => this._strategies = data,
+            error => console.log('ERRRRR')
+        );
+    }
     private isSelected(strategy: strategy.Strategy) { return strategy.id === this._selectedId; }
 
     private onSelect(strategy: strategy.Strategy) {

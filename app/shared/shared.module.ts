@@ -33,6 +33,10 @@ export class SharedModule {
     }
 }
 
+<<<<<<< HEAD
+=======
+/*
+>>>>>>> 21b2cb7... updated RC5 to RC6, fixed http service DI issue
 @NgModule({
     exports: [SharedModule],
     providers: [

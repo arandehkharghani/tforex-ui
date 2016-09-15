@@ -1,4 +1,4 @@
-import { NgModule, provide }       from '@angular/core';
+import { NgModule }       from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -11,15 +11,15 @@ import { AppComponent }   from './app.component';
 
 @NgModule({
     declarations: [AppComponent],
-    imports:      [
+    imports: [
         BrowserModule,
         routing,
         SharedModule.forRoot(),
-        HttpModule,  // ??
+        HttpModule,
     ],
-    bootstrap:    [AppComponent],
+    bootstrap: [AppComponent],
     providers: [
-        provide(appSettings, { useValue: constAppSettings }),
+        { provide: appSettings , useValue: constAppSettings },
     ],
 })
-export class AppModule {}
+export class AppModule { }

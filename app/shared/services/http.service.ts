@@ -1,10 +1,8 @@
-import { Injectable, ReflectiveInjector, Injector  } from '@angular/core';
-import { Http } from '@angular/http';
-import { Request } from '@angular/http/src/static_request';
-import { Response } from '@angular/http/src/static_response';
+import { Injectable, ReflectiveInjector, Injector, forwardRef  } from '@angular/core';
+import { Http, Request, Response, XHRBackend, RequestOptions, ConnectionBackend, RequestOptionsArgs } from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
-import { XHRBackend, RequestOptions } from '@angular/http';
-import { ConnectionBackend, RequestOptionsArgs } from '@angular/http/src/interfaces';
+
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -13,15 +11,15 @@ import 'rxjs/Rx';
 import * as shared from '../../shared';
 
 export const httpServiceProvider = {
-    provide: Http, useFactory: (backend: XHRBackend, defaultOptions: RequestOptions) =>
-        new HttpService(backend, defaultOptions),
-    deps: [XHRBackend, RequestOptions],
+    provide: Http, useFactory: forwardRef(() => (backend: XHRBackend, defaultOptions: RequestOptions) =>
+        new HttpService(backend, defaultOptions)), deps: [XHRBackend, RequestOptions],
 };
 
 
 @Injectable()
 export class HttpService extends Http {
-    private _error$: Subject<shared.Error>;
+    public owner: string;
+    public _error$: Subject<shared.Error>;
     private _dataStore: {
         errors: shared.Error[]
     };
@@ -34,6 +32,7 @@ export class HttpService extends Http {
         super(_backend, _defaultOptions);
         this._dataStore = { errors: [] };
         this._error$ = <Subject<shared.Error>>new Subject();
+        console.log('$ initialised');
     }
 
     public get(url: string, options?: RequestOptionsArgs): Observable<Response> {
@@ -95,10 +94,11 @@ export class HttpService extends Http {
                 }
             } else {
                 currentError.type = shared.ErrorTypeEnum.generic;
-                currentError.data = 'MissingErrorProperty';
+                currentError.data = error;
             }
 
             this._dataStore.errors.push(currentError);
+            console.log(`owner ${this.owner} is to get notified!`);
             this._error$.next(currentError);
             return Observable.throw(currentError);
         }

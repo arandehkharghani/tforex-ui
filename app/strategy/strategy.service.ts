@@ -23,6 +23,8 @@ export class StrategyService {
      * @param id The id of a specific strategy
      */
     public get(id?: string, extraHttpRequestParams?: any): Observable<Array<models.Strategy>> {
+
+        console.log(`http-service owner at service level ${(<any>this.http).owner}`);
         const path = this.basePath + '/strategies';
 
         let queryParameters = new URLSearchParams();

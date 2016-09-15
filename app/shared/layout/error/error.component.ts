@@ -10,7 +10,7 @@ import * as shared from '../../../shared';
     template: `
 <div class="alert alert-danger" *ngFor='let error of _errors'>
     <a href="#" class="close" data-dismiss="alert" aria-label="close"(click)='onCloseAlert(error)'>&times;</a>
-    <span *ngIf='isTypeGeneric(error.type)'>{{error.data}}</span>
+    <span *ngIf='isTypeGeneric(error.type)'>{{error.data | json}}</span>
     <span *ngIf='!isTypeGeneric(error.type)'>
         <div *ngFor='let validationError of error.data'>
             <strong>{{validationError.PropertyName}}:</strong>  {{validationError.Message}}
@@ -32,8 +32,8 @@ export class ErrorComponent implements OnInit, OnDestroy {
         label:
         for (let v in o) {
             if (v) {
-                console.log(v);
-                console.log(o[v]);
+                // console.log(v);
+                // console.log(o[v]);
             } else {
                 break label;
             }
@@ -42,8 +42,10 @@ export class ErrorComponent implements OnInit, OnDestroy {
 
 
     public ngOnInit() {
-        this._subscription = (<shared.HttpService>this._http).error$.subscribe(
+        console.log(`http-service owner at error component level ${(<any>this._http).owner}`);
+        this._subscription = (<any>this._http)._error$.subscribe(
             error => {
+                console.log('hoooooray');
                 this._errors.push(error);
                 this._cdr.markForCheck();
             });
@@ -51,6 +53,7 @@ export class ErrorComponent implements OnInit, OnDestroy {
     public ngOnDestroy() {
         if (this._subscription) {
             this._subscription.unsubscribe();
+            console.log(`$ unsubscribed`);
         }
     }
     private onCloseAlert(error: shared.Error) {
