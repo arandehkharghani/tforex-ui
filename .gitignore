@@ -83,5 +83,8 @@ $RECYCLE.BIN/
 *.js
 *.js.map
 *.ngfactory.ts
-
+!gulp.config.js
+!gulp.js
+!systemjs.config.js
 **/codegen
+dist/
