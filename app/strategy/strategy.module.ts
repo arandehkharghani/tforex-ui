@@ -8,16 +8,18 @@ import * as strategy from '../strategy';
 
 @NgModule({
   imports: [
-    SharedModule,
     strategy.routing,
+    SharedModule,
   ],
   declarations: [
+    strategy.StrategyDetailComponent,
     strategy.StrategyListComponent,
     strategy.StrategyComponent,
-    strategy.StrategyDetailComponent,
   ],
   providers: [
+    strategy.StrategyResolveService,
     strategy.StrategyService,
-    strategy.StrategyResolveService],
+  ],
 })
-export class StrategyModule { }
+export class StrategyModule {
+}

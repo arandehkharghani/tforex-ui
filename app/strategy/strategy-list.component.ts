@@ -9,11 +9,12 @@ import * as core from '../core';
 
 
 @Component({
+    moduleId: module.id,
     providers: [
         core.httpServiceProvider,
         strategy.StrategyService,
     ],
-    templateUrl: 'app/strategy/strategy-list.component.html',
+    templateUrl: 'strategy-list.component.html',
 })
 export class StrategyListComponent implements OnInit, OnDestroy {
 

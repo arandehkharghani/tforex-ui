@@ -12,7 +12,9 @@ import { routing }        from './app.routing';
 import { AppComponent }   from './app.component';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [
+        AppComponent,
+    ],
     imports: [
         BrowserModule,
         routing,
@@ -21,7 +23,7 @@ import { AppComponent }   from './app.component';
     ],
     bootstrap: [AppComponent],
     providers: [
-        {provide: LocationStrategy, useClass: HashLocationStrategy},
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
     ],
 })
 export class AppModule { }
