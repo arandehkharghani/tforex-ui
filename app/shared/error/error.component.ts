@@ -8,15 +8,13 @@ import * as shared from '../../shared';
 @Component({
     selector: 'sg-error',
     template: `
-<div class="alert alert-danger" *ngFor='let error of _errors'>
-    <a href="#" class="close" data-dismiss="alert" aria-label="close"(click)='onCloseAlert(error)'>&times;</a>
-    <span *ngIf='isTypeGeneric(error.type)'>{{error.data | json}}</span>
-    <span *ngIf='!isTypeGeneric(error.type)'>
-        <div *ngFor='let validationError of error.data'>
-            <strong>{{validationError.PropertyName}}:</strong>  {{validationError.Message}}
-        </div>
-    </span>
-</div>
+
+    <div class="alert alert-danger alert-dismissible fade in" role="alert" *ngFor='let error of _errors'>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (close)='onCloseAlert(error)'>
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>{{error?.title}}</strong>{{error?.data}}
+    </div>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -44,7 +42,7 @@ export class ErrorComponent implements OnInit, OnDestroy {
     public ngOnInit() {
         console.log(`http-service owner at error component level ${(<any>this._http).owner}`);
         this._subscription = (<any>this._http)._error$.subscribe(
-            error => {
+            (error: shared.Error) => {
                 console.log('hoooooray');
                 this._errors.push(error);
                 this._cdr.markForCheck();

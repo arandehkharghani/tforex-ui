@@ -13,7 +13,7 @@ export class StrategyService {
 
     constructor(protected http: Http, @Inject(appSettings) private _appSettings: AppSettings) {
         if (_appSettings.apiStrategyBasePath) {
-            this.basePath = _appSettings.apiStrategyBasePath;
+            this.basePath = _appSettings.apiGatewayBasePath;
         }
     }
 
@@ -37,8 +37,8 @@ export class StrategyService {
             method: 'GET',
             headers: headerParams,
             search: queryParameters,
+            withCredentials: true,
         };
-
         return this.http.request(path, requestOptions)
             .map((response: Response) => response.json());
     }
