@@ -80,21 +80,17 @@ export class HttpService extends Http {
 
         if (!error) {
             currentError.type = shared.ErrorTypeEnum.generic;
-            currentError.data = 'NullErrorObject';
+            currentError.message = 'NullErrorObject';
         } else {
-            if (error.Error !== undefined && error.Error === true) {
+            if (error.code && error.message) {
                 // a handled error from a remote api call
-                if (error.ValidationResult && error.ValidationResult.ValidationErrors) {
-                    // this is a validation error
-                    currentError.type = shared.ErrorTypeEnum.validation;
-                    currentError.data = error.ValidationResult.ValidationErrors;
-                } else {
-                    currentError.type = shared.ErrorTypeEnum.generic;
-                    currentError.data = error.Message;
-                }
+                currentError.type = shared.ErrorTypeEnum.generic;
+                currentError.errorCode = error.code;
+                currentError.statusCode = error.statusCode;
+                currentError.message = error.message;
             } else {
                 currentError.type = shared.ErrorTypeEnum.generic;
-                currentError.data = error;
+                currentError.message = error;
             }
 
             this._dataStore.errors.push(currentError);

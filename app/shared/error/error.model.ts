@@ -6,6 +6,7 @@ export interface ErrorResponse {
 
 export class Error {
     public type: shared.ErrorTypeEnum;
-    public title: string;
-    public data: any;
+    public errorCode: string;
+    public statusCode: string;
+    public message: any;
 }

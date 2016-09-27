@@ -13,7 +13,9 @@ import * as shared from '../../shared';
         <button type="button" class="close" data-dismiss="alert" aria-label="Close" (close)='onCloseAlert(error)'>
             <span aria-hidden="true">&times;</span>
         </button>
-        <strong>{{error?.title}}</strong>{{error?.data}}
+        <strong>Error Code: </strong>{{error?.errorCode}}&nbsp;
+        <strong>Status Code: </strong>{{error?.statusCode}}&nbsp;
+        <strong>Error Message: </strong>{{error?.message}}
     </div>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
