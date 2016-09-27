@@ -15,7 +15,7 @@ import * as shared from '../../shared';
         </button>
         <strong>Error Code: </strong>{{error?.errorCode}}&nbsp;
         <strong>Status Code: </strong>{{error?.statusCode}}&nbsp;
-        <strong>Error Message: </strong>{{error?.message}}
+        <strong>Error Message: </strong>{{error?.message|json}}
     </div>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,

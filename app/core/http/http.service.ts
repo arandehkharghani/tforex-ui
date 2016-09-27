@@ -82,11 +82,11 @@ export class HttpService extends Http {
             currentError.type = shared.ErrorTypeEnum.generic;
             currentError.message = 'NullErrorObject';
         } else {
-            if (error.code && error.message) {
+            if (error.message) {
                 // a handled error from a remote api call
                 currentError.type = shared.ErrorTypeEnum.generic;
-                currentError.errorCode = error.code;
-                currentError.statusCode = error.statusCode;
+                currentError.errorCode = error.code || err.statusText;
+                currentError.statusCode = error.statusCode || err.status;
                 currentError.message = error.message;
             } else {
                 currentError.type = shared.ErrorTypeEnum.generic;
