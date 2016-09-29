@@ -1,4 +1,4 @@
-import * as core from '../core';
+import * as core from '../../core';
 
 export interface Strategy {
 
@@ -13,4 +13,11 @@ export interface Strategy {
     isActive?: boolean;
 
     granularity?: core.GranularityEnum;
+
+    postedBy?: string;
+}
+
+export interface StrategyQuery extends Strategy {
+
+    postedByDisplayName?: string;
 }

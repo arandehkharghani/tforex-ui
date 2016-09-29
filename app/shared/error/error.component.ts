@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import * as shared from '../../shared';
 
 @Component({
-    selector: 'sg-error',
+    selector: 'tfrx-error',
     template: `
 
     <div class="alert alert-danger alert-dismissible fade in" role="alert" *ngFor='let error of _errors'>

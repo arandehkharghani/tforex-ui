@@ -3,30 +3,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Observable }     from 'rxjs/Observable';
 
-import { DialogService } from '../core';
+import { DialogService } from '../../core';
 
-import { Strategy } from '../strategy';
+import { Strategy } from '../../strategy';
 
 @Component({
-    template: `
-  <div *ngIf="strategy">
-    <h3>"{{editName}}"</h3>
-    <div>
-      <label>Id: </label>{{strategy.id}}</div>
-    <div>
-      <label>Name: </label>
-      <input [(ngModel)]="editName" placeholder="name"/>
-    </div>
-    <p>
-      <button (click)="save()">Save</button>
-      <button (click)="cancel()">Cancel</button>
-    </p>
-  </div>
-  `,
-    styles: ['input {width: 20em}'],
+    moduleId: module.id,
+    templateUrl: 'strategy-view.component.html',
 })
-
-export class StrategyDetailComponent implements OnInit {
+export class StrategyViewComponent implements OnInit {
     private _strategy: Strategy;
     private _editName: string;
 

@@ -10,8 +10,10 @@ import * as core from '../core';
 @NgModule({
     imports: [CommonModule],
     declarations: [
+        core.TForextRouterOutletDirective,
     ],
     exports: [
+        core.TForextRouterOutletDirective,
     ],
     providers: [
         { provide: core.appSettings , useValue: core.constAppSettings },

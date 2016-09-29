@@ -2,9 +2,9 @@ import {Http, Headers, RequestOptionsArgs, Response, URLSearchParams} from '@ang
 import {Injectable, Inject, Optional} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import { AppSettings, appSettings }                                from '../core';
+import { AppSettings, appSettings }                                from '../../core';
 
-import * as models from '../strategy';
+import * as models from '../../strategy';
 
 @Injectable()
 export class StrategyService {
@@ -22,7 +22,7 @@ export class StrategyService {
      * Returns a list of available strategies
      * @param id The id of a specific strategy
      */
-    public get(id?: string, extraHttpRequestParams?: any): Observable<Array<models.Strategy>> {
+    public get(id?: string, extraHttpRequestParams?: any): Observable<Array<models.StrategyQuery>> {
 
         console.log(`http-service owner at service level ${(<any>this.http).owner}`);
         const path = this.basePath + '/strategies';
@@ -63,21 +63,6 @@ export class StrategyService {
             search: queryParameters,
         };
         requestOptions.body = JSON.stringify(strategy);
-
-        return this.http.request(path, requestOptions)
-            .map((response: Response) => response.json());
-    }
-    public signin() {
-         const path = this._appSettings.apiGatewayBasePath + '/auth/google';
-
-        let queryParameters = new URLSearchParams();
-        let headerParams = this.defaultHeaders;
-
-        let requestOptions: RequestOptionsArgs = {
-            method: 'GET',
-            headers: headerParams,
-            search: queryParameters,
-        };
 
         return this.http.request(path, requestOptions)
             .map((response: Response) => response.json());

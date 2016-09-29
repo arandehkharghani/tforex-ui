@@ -12,7 +12,7 @@ import * as strategy from '../strategy';
     SharedModule,
   ],
   declarations: [
-    strategy.StrategyDetailComponent,
+    strategy.StrategyViewComponent,
     strategy.StrategyListComponent,
     strategy.StrategyComponent,
   ],

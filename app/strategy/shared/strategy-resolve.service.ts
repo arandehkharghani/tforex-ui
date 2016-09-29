@@ -3,7 +3,7 @@ import { Router, Resolve,
     ActivatedRouteSnapshot } from '@angular/router';
 import { Observable }             from 'rxjs/Observable';
 
-import { Strategy, StrategyService } from '../strategy';
+import { Strategy, StrategyService } from '../../strategy';
 
 @Injectable()
 export class StrategyResolveService implements Resolve<Strategy> {

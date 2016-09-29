@@ -1,7 +1,7 @@
 import { Routes,
   RouterModule }  from '@angular/router';
 
-import { StrategyComponent, StrategyListComponent, StrategyDetailComponent, StrategyResolveService } from '../strategy';
+import { StrategyComponent, StrategyListComponent, StrategyViewComponent, StrategyResolveService } from '../strategy';
 
 import { CanDeactivateGuardService } from '../core';
 
@@ -12,7 +12,7 @@ const routes: Routes = [
         path: '', component: StrategyListComponent,
       },
       {
-        path: ':id', component: StrategyDetailComponent, canDeactivate: [CanDeactivateGuardService],
+        path: ':id', component: StrategyViewComponent, canDeactivate: [CanDeactivateGuardService],
         resolve: { strategy: StrategyResolveService },
       },
       // { path: ':id', component: HeroDetailComponent }

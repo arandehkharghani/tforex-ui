@@ -1,0 +1,20 @@
+<div class="page-header">
+    <h1>{{_strategy.name}}</h1>
+</div>
+<div class="pull-right" [hidden]="authentication.user._id !== tradeProfile.user._id">
+    <a class="btn btn-primary" (click)="edit()">
+        <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" (click)="remove()">
+        <i class="glyphicon glyphicon-trash"></i>
+    </a>
+</div>
+
+<small>
+    <em class="text-muted">
+        Posted on
+        <span ng-bind="_strategy.created | date:'mediumDate'"></span>
+        by
+        <span ng-bind="_strategy.user.displayName"></span>
+    </em>
+</small>

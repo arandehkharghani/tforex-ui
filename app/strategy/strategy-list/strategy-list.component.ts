@@ -3,9 +3,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 
-import * as strategy from '../strategy';
-import * as shared from '../shared';
-import * as core from '../core';
+import * as strategy from '../../strategy';
+import * as shared from '../../shared';
+import * as core from '../../core';
 
 
 @Component({
@@ -18,7 +18,7 @@ import * as core from '../core';
 })
 export class StrategyListComponent implements OnInit, OnDestroy {
 
-    private _strategies: strategy.Strategy[] = [];
+    private _strategies: strategy.StrategyQuery[] = [];
     private _selectedId: string;
     private _sub: Subscription;
 
@@ -38,7 +38,7 @@ export class StrategyListComponent implements OnInit, OnDestroy {
                 this._selectedId = params['id'];
                 this._service.get().subscribe(
                     data => this._strategies = data,
-                    error => console.log('ERRRRR')
+                    error => console.log(JSON.stringify(error))
                 );
             });
 
