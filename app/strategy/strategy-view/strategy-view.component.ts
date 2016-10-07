@@ -5,24 +5,29 @@ import { Observable }     from 'rxjs/Observable';
 
 import { DialogService } from '../../core';
 
-import { Strategy } from '../../strategy';
+import * as core from '../../core';
+import * as strategy from '../../strategy';
 
 @Component({
     moduleId: module.id,
     templateUrl: 'strategy-view.component.html',
 })
 export class StrategyViewComponent implements OnInit {
-    private _strategy: Strategy;
+    private _strategy: strategy.StrategyQuery;
     private _editName: string;
+    private _userId: string | number;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        public dialogService: DialogService
-    ) { }
+        public dialogService: DialogService,
+        private authService: core.AuthService
+    ) {
+        this._userId = authService.userId;
+    }
 
     public ngOnInit() {
-        this.route.data.forEach((data: { strategy: Strategy }) => {
+        this.route.data.forEach((data: { strategy: strategy.StrategyQuery }) => {
             this._editName = data.strategy.name;
             this._strategy = data.strategy;
         });

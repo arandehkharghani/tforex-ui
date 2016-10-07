@@ -7,6 +7,12 @@ export * from './misc/can-component-deactivate.interface';
 export * from './misc/dialog.service';
 export * from './misc/can-deactivate-guard.service';
 
+export * from './error/error.enum';
+export * from './error/error.model';
+
+export * from './error/error.component';
+
+export * from './auth/user.model';
 export * from './auth/auth.service';
 export * from './auth/auth-guard.service';
 

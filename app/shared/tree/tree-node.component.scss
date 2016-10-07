@@ -1,0 +1,37 @@
+.li-shared{
+    position: relative;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+input{
+      border: 0px;
+      padding: 3px;
+      width: 100%;               
+}
+
+ul{
+    margin-left: 0px;
+    padding-left:0px;
+    li.node{
+        @extend .li-shared;
+        padding:10px 0 0 20px;            
+    }
+}
+
+span.title:hover{
+    font-weight: bold;
+}
+
+span.selected{
+    font-weight: bold;
+    color: darkslategrey;
+}
+
+span.icon:hover{
+    color: lightblue;
+}
+
+div.childless-node {
+    padding-left:10px;
+}

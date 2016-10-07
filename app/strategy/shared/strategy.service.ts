@@ -8,11 +8,11 @@ import * as models from '../../strategy';
 
 @Injectable()
 export class StrategyService {
-    protected basePath = 'http://localhost:10010/';
+    protected basePath = 'http://localhost:10020/';
     public defaultHeaders: Headers = new Headers();
 
     constructor(protected http: Http, @Inject(appSettings) private _appSettings: AppSettings) {
-        if (_appSettings.apiStrategyBasePath) {
+        if (_appSettings.apiGatewayBasePath) {
             this.basePath = _appSettings.apiGatewayBasePath;
         }
     }
@@ -24,7 +24,7 @@ export class StrategyService {
      */
     public get(id?: string, extraHttpRequestParams?: any): Observable<Array<models.StrategyQuery>> {
 
-        console.log(`http-service owner at service level ${(<any>this.http).owner}`);
+        console.log(`http-service owner at strategy service level ${(<any>this.http).owner}`);
         const path = this.basePath + '/strategies';
 
         let queryParameters = new URLSearchParams();

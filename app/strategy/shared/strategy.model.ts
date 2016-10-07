@@ -18,6 +18,5 @@ export interface Strategy {
 }
 
 export interface StrategyQuery extends Strategy {
-
-    postedByDisplayName?: string;
+    postedBy_displayName?: string;
 }

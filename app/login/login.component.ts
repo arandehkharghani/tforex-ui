@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this._sub = this._route
       .queryParams
       .subscribe(params => {
-        let accessToken = params['access_token'];
-        if (accessToken) {
-          this._authService.login(accessToken);
+        let userId = params['user_id'];
+        if (userId) {
+          this._authService.loginAndRedirect(userId);
         }
       });
   }
@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private login(path: string) {
     this._message = 'Trying to log in ...';
-
     window.location.href = this._appSettings.apiGatewayBasePath + path;
 
     /*

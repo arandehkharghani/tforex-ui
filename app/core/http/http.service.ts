@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
-import * as shared from '../../shared';
+import * as core from '../../core';
 
 export const httpServiceProvider = {
     provide: Http, useFactory: forwardRef(() => (backend: XHRBackend, defaultOptions: RequestOptions) =>
@@ -19,9 +19,9 @@ export const httpServiceProvider = {
 @Injectable()
 export class HttpService extends Http {
     public owner: string;
-    public _error$: Subject<shared.Error>;
+    public _error$: Subject<core.Error>;
     private _dataStore: {
-        errors: shared.Error[]
+        errors: core.Error[]
     };
 
     get error$() {
@@ -31,7 +31,7 @@ export class HttpService extends Http {
     constructor(_backend: ConnectionBackend, _defaultOptions: RequestOptions) {
         super(_backend, _defaultOptions);
         this._dataStore = { errors: [] };
-        this._error$ = <Subject<shared.Error>>new Subject();
+        this._error$ = <Subject<core.Error>>new Subject();
         console.log('$ initialised');
     }
 
@@ -74,22 +74,22 @@ export class HttpService extends Http {
      * sends the error to the http-error-handler (provided by the same consumer) to handle, 
      */
     private handleError(err: Response) {
-        let currentError: shared.Error = new shared.Error();
+        let currentError: core.Error = new core.Error();
         let error = err.json();
         let errorMessage = '';
 
         if (!error) {
-            currentError.type = shared.ErrorTypeEnum.generic;
+            currentError.type = core.ErrorTypeEnum.generic;
             currentError.message = 'NullErrorObject';
         } else {
             if (error.message) {
                 // a handled error from a remote api call
-                currentError.type = shared.ErrorTypeEnum.generic;
+                currentError.type = core.ErrorTypeEnum.generic;
                 currentError.errorCode = error.code || err.statusText;
                 currentError.statusCode = error.statusCode || err.status;
                 currentError.message = error.message;
             } else {
-                currentError.type = shared.ErrorTypeEnum.generic;
+                currentError.type = core.ErrorTypeEnum.generic;
                 currentError.message = error;
             }
 

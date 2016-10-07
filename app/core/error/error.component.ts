@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
-import * as shared from '../../shared';
+import * as core from '../../core';
 
 @Component({
     selector: 'tfrx-error',
@@ -23,7 +23,7 @@ import * as shared from '../../shared';
 
 
 export class ErrorComponent implements OnInit, OnDestroy {
-    private _errors: shared.Error[] = [];
+    private _errors: core.Error[] = [];
     private _subscription: Subscription;
 
     constructor(private _http: Http, private _cdr: ChangeDetectorRef) {
@@ -44,7 +44,7 @@ export class ErrorComponent implements OnInit, OnDestroy {
     public ngOnInit() {
         console.log(`http-service owner at error component level ${(<any>this._http).owner}`);
         this._subscription = (<any>this._http)._error$.subscribe(
-            (error: shared.Error) => {
+            (error: core.Error) => {
                 console.log('hoooooray');
                 this._errors.push(error);
                 this._cdr.markForCheck();
@@ -56,11 +56,11 @@ export class ErrorComponent implements OnInit, OnDestroy {
             console.log(`$ unsubscribed`);
         }
     }
-    private onCloseAlert(error: shared.Error) {
+    private onCloseAlert(error: core.Error) {
         this._errors.splice(this._errors.indexOf(error), 1);
         this._cdr.markForCheck();
     }
-    private isTypeGeneric(type: shared.ErrorTypeEnum) {
-        return type === shared.ErrorTypeEnum.generic;
+    private isTypeGeneric(type: core.ErrorTypeEnum) {
+        return type === core.ErrorTypeEnum.generic;
     }
 }

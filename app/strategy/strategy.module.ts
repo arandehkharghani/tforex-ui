@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule }        from '@angular/forms';
 
 import { SharedModule } from '../shared';
 
+import * as core from '../core';
 import * as strategy from '../strategy';
 
 @NgModule({
@@ -17,8 +18,10 @@ import * as strategy from '../strategy';
     strategy.StrategyComponent,
   ],
   providers: [
+ //   core.httpServiceProvider,
     strategy.StrategyResolveService,
     strategy.StrategyService,
+    strategy.StrategyDataService,
   ],
 })
 export class StrategyModule {

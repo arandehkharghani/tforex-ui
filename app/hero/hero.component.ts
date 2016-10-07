@@ -6,14 +6,14 @@ import { AuthService } from '../core';
 
 @Component({
   template: `
-    <h2>Heroes of {{_userName}}</h2>
+    <h2>Heroes of {{_userId}}</h2>
     <router-outlet></router-outlet>
   `,
 })
 export class HeroComponent {
-  private _userName = '';
+  private _userId: number | string = '';
   constructor(_authService: AuthService) {
-    this._userName = _authService.userName;
+    this._userId = _authService.userId;
   }
 }
 

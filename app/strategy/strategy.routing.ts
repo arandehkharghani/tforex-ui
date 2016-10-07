@@ -3,17 +3,17 @@ import { Routes,
 
 import { StrategyComponent, StrategyListComponent, StrategyViewComponent, StrategyResolveService } from '../strategy';
 
-import { CanDeactivateGuardService } from '../core';
+import { CanDeactivateGuardService, AuthGuardService } from '../core';
 
 const routes: Routes = [
   {
     path: '', component: StrategyComponent, children: [
       {
-        path: '', component: StrategyListComponent,
+        path: '', component: StrategyListComponent, canActivate: [AuthGuardService],
       },
       {
         path: ':id', component: StrategyViewComponent, canDeactivate: [CanDeactivateGuardService],
-        resolve: { strategy: StrategyResolveService },
+        resolve: { strategy: StrategyResolveService }, canActivate: [AuthGuardService],
       },
       // { path: ':id', component: HeroDetailComponent }
     ],

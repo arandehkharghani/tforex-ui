@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 import { Component, OnInit, OnDestroy }          from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 
@@ -19,12 +20,16 @@ import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
         <a  routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="nav-link">Login</a>
       </li>
     </ul>
+    <tfrx-error></tfrx-error>
 
     <router-outlet></router-outlet>
   `,
 })
 export class AppComponent implements OnInit {
-  constructor(private _route: Router) { }
+  constructor(private _route: Router,
+    private _http: Http) {
+    let x = ';;';
+  }
   public ngOnInit() {
     /*
     this._route.events.subscribe(event => {

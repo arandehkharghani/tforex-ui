@@ -10,12 +10,10 @@ import * as shared from '../shared';
         CommonModule,
     ],
     declarations: [
-        shared.ErrorComponent,
     ],
     exports: [
         CommonModule,
         FormsModule,
-        shared.ErrorComponent,
     ],
 })
 export class SharedModule { }

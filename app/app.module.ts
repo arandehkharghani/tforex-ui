@@ -18,12 +18,12 @@ import { AppComponent }   from './app.component';
     imports: [
         BrowserModule,
         routing,
-        CoreModule,
+        CoreModule.forRoot(),
+        SharedModule,
         HttpModule,
     ],
     bootstrap: [AppComponent],
     providers: [
-        { provide: appSettings , useValue: constAppSettings },
         { provide: LocationStrategy, useClass: HashLocationStrategy },
     ],
 })

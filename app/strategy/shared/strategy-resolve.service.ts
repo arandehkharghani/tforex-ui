@@ -3,22 +3,14 @@ import { Router, Resolve,
     ActivatedRouteSnapshot } from '@angular/router';
 import { Observable }             from 'rxjs/Observable';
 
-import { Strategy, StrategyService } from '../../strategy';
+import { StrategyQuery, StrategyDataService } from '../../strategy';
 
 @Injectable()
-export class StrategyResolveService implements Resolve<Strategy> {
-    constructor(private _strategyService: StrategyService, private router: Router) { }
+export class StrategyResolveService implements Resolve<StrategyQuery> {
+    constructor(private _strategyDataService: StrategyDataService, private router: Router) { }
 
-    public resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any {
+    public resolve(route: ActivatedRouteSnapshot): Observable<StrategyQuery> | Promise<StrategyQuery> | any {
         let id = route.params['id'];
-        return this._strategyService.get(id).subscribe(
-            strategies => {
-                if (strategies && strategies.length === 1) {
-                    return strategies[0];
-                } else { // id not found
-                    this.router.navigate(['/strategies']);
-                    return false;
-                }
-            });
+        return this._strategyDataService.get(id);
     }
 }

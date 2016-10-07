@@ -11,21 +11,38 @@ import * as core from '../core';
     imports: [CommonModule],
     declarations: [
         core.TForextRouterOutletDirective,
+        core.ErrorComponent,
     ],
     exports: [
         core.TForextRouterOutletDirective,
+        core.ErrorComponent,
     ],
     providers: [
-        { provide: core.appSettings , useValue: core.constAppSettings },
+        { provide: core.appSettings, useValue: core.constAppSettings },
+        core.httpServiceProvider,
         core.AuthService,
         core.AuthGuardService,
-        core.httpServiceProvider,
         core.CanDeactivateGuardService,
         core.DialogService,
-        {provide: LocationStrategy, useClass: HashLocationStrategy},
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
     ],
 })
 export class CoreModule {
+
+    public static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: CoreModule,
+            providers: [
+                { provide: core.appSettings, useValue: core.constAppSettings },
+                core.httpServiceProvider,
+                core.AuthService,
+                core.AuthGuardService,
+                core.CanDeactivateGuardService,
+                core.DialogService,
+                { provide: LocationStrategy, useClass: HashLocationStrategy },
+            ],
+        };
+    }
     constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
         if (parentModule) {
             throw new Error(
@@ -33,4 +50,5 @@ export class CoreModule {
         }
     }
 }
+
 

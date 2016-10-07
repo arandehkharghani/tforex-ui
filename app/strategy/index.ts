@@ -1,6 +1,7 @@
 export * from './shared/strategy.model';
 
 export * from './shared/strategy.service';
+export * from './shared/strategy-data.service';
 export * from './shared/strategy-resolve.service';
 
 export * from './strategy.component';
