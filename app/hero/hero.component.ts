@@ -11,7 +11,7 @@ import { AuthService } from '../core';
   `,
 })
 export class HeroComponent {
-  private _userId: number | string = '';
+  private _userId: number | string | null;
   constructor(_authService: AuthService) {
     this._userId = _authService.userId;
   }

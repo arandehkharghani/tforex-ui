@@ -1,4 +1,4 @@
-import { Injectable, ReflectiveInjector, Injector, forwardRef  } from '@angular/core';
+import { Injectable, ReflectiveInjector, Injector, forwardRef } from '@angular/core';
 import { Http, Request, Response, XHRBackend, RequestOptions, ConnectionBackend, RequestOptionsArgs } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -62,7 +62,7 @@ export class HttpService extends Http {
     }
     public request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
         return super.request(url, options)
-            .catch(err => this.handleError(err));
+            .catch((err, caught) => this.handleError(err));
     }
 
     private extractData(res: Response) {
@@ -73,7 +73,7 @@ export class HttpService extends Http {
     /**
      * sends the error to the http-error-handler (provided by the same consumer) to handle, 
      */
-    private handleError(err: Response) {
+    private handleError(err: Response): Observable<Response> {
         let currentError: core.Error = new core.Error();
         let error = err.json();
         let errorMessage = '';
@@ -96,7 +96,7 @@ export class HttpService extends Http {
             this._dataStore.errors.push(currentError);
             console.log(`owner ${this.owner} is to get notified!`);
             this._error$.next(currentError);
-            return Observable.throw(currentError);
         }
+        return Observable.throw(currentError);
     }
 }

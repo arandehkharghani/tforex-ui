@@ -1,8 +1,8 @@
 {
   "resolution": "main",
   "tree": {
-    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/0c83aae6cd0761a9d5176240f7dbf967e225ca84/express-serve-static-core/express-serve-static-core.d.ts",
-    "raw": "registry:dt/express-serve-static-core#0.0.0+20160617060422",
-    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/0c83aae6cd0761a9d5176240f7dbf967e225ca84/express-serve-static-core/express-serve-static-core.d.ts"
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/efa9f6a496671c274e402ce0361d4b0cab5d632f/express-serve-static-core/express-serve-static-core.d.ts",
+    "raw": "registry:dt/express-serve-static-core#4.0.0+20161012061536",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/efa9f6a496671c274e402ce0361d4b0cab5d632f/express-serve-static-core/express-serve-static-core.d.ts"
   }
 }

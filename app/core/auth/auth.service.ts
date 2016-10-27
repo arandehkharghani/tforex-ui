@@ -1,4 +1,4 @@
-import {Http, Headers, RequestOptionsArgs, Response, URLSearchParams } from '@angular/http';
+import { Http, Headers, RequestOptionsArgs, Response, URLSearchParams } from '@angular/http';
 import { Injectable, Inject } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -14,11 +14,15 @@ export class AuthService {
   public defaultHeaders: Headers = new Headers();
   protected basePath = 'http://localhost:10020/';
   private _redirectUrl: string;
-  private _userId: string | number;
+  private _userId: string | number | null;
 
-  public set userId(value: string | number) {
+  public set userId(value: string | number | null) {
     this._userId = value;
-    sessionStorage.setItem('user_id', value.toString());
+    if (value) {
+      sessionStorage.setItem('user_id', value.toString());
+    } else {
+      sessionStorage.removeItem('user_id');
+    }
   }
   public get userId() {
     this._userId = sessionStorage.getItem('user_id');
@@ -28,7 +32,10 @@ export class AuthService {
   public get isLoggedIn() { return this.userId; }
 
   public get redirectUrl() {
-    this._redirectUrl = sessionStorage.getItem('redirect_url');
+    let url = sessionStorage.getItem('redirect_url');
+    if (url) {
+      this._redirectUrl = url;
+    }
     return this._redirectUrl;
   }
   public set redirectUrl(value: string) {

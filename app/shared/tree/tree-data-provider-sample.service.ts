@@ -56,12 +56,14 @@ export class TreeDataProviderSampleService implements shared.TreeDataProvider {
                 regex = new RegExp('^' + node.path + node.text + ',$');
             }
             // check if this is already populated, to save an unnecessary remote api call
-            if (!this._dataStore.some((x => regex.test(x.path)))) {
+            if (!this._dataStore.some((x => x.path != null && regex.test(x.path)))) {
                 console.warn('GETTING DATA FROM THE SERVER FOR THE ', node._id);
-                tempCollection = this._dummyData.filter(x => regex.test(x.path));  // to be replaced by a remote api call               
+                tempCollection = this._dummyData.filter(x => x.path &&
+                    regex.test(x.path));  // to be replaced by a remote api call               
                 tempCollection.forEach(x => this._dataStore.push(x));
             } else {
-                tempCollection = this._dataStore.filter(x => regex.test(x.path));  // to be replaced by a remote api call
+                tempCollection = this._dataStore.filter(x => x.path &&
+                    regex.test(x.path));  // to be replaced by a remote api call
             }
             observer.next(tempCollection);
             observer.complete();

@@ -14,8 +14,8 @@ import * as strategy from '../../strategy';
 })
 export class StrategyViewComponent implements OnInit {
     private _strategy: strategy.StrategyQuery;
-    private _editName: string;
-    private _userId: string | number;
+    private _editName: string | undefined;
+    private _userId: string | number | null;
 
     constructor(
         private route: ActivatedRoute,

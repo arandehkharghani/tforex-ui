@@ -60,7 +60,7 @@ export class TreeNodeComponent implements OnChanges {
         } else {
             regex = new RegExp('^' + this.node.path + this.node.text + ',$');
         }
-        return this.treeNodes.filter(x => regex.test(x.path));
+        return this.treeNodes.filter(x => x.path && regex.test(x.path));
     }
 
     private onSelectedItemChanged(nodes: TreeNode[]) {
