@@ -3,6 +3,10 @@ export * from './app-settings';
 export * from './routing/router-outlet.directive';
 
 export * from './misc/granularity.enum';
+export * from './misc/instrument.enum';
+
+export * from './misc/event-response.model';
+
 export * from './misc/can-component-deactivate.interface';
 export * from './misc/dialog.service';
 export * from './misc/can-deactivate-guard.service';

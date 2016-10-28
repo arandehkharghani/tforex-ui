@@ -1,5 +1,5 @@
 import { Http } from '@angular/http';
-import { Component, OnInit, OnDestroy }          from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 
 @Component({
@@ -9,6 +9,9 @@ import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
       <li class="nav-item">
         <a routerLink="/strategies" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }"  
           class="nav-link active">Strategies</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/traders" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="nav-link">Traders</a>
       </li>
       <li class="nav-item">
         <a routerLink="/heroes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="nav-link">Heroes</a>

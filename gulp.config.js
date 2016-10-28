@@ -3,7 +3,7 @@
     const _appPath = 'app/';
     const _buildPath = 'dist/';
     const _tmpPath = 'dist/tmp/';
-    
+
 
     const _tsFiles = [
         _appPath + '**/!(*.spec)+(.ts)'
@@ -15,12 +15,13 @@
         'tslint-rules/*.ts',
     ];
 
-    const _appBundles = [        
-        { moduleName: 'strategy', modulePath: _appPath +  "strategy/" },
-        { moduleName: 'hero', modulePath:  _appPath + "hero/" },
-        { moduleName: 'crisis', modulePath:  _appPath + "crisis/" },
-        { moduleName: 'login', modulePath: _appPath + "login/" },        
-        { moduleName: 'main', modulePath:  _appPath, isMain: true },
+    const _appBundles = [
+        { moduleName: 'strategy', modulePath: _appPath + "strategy/" },
+        { moduleName: 'trader', modulePath: _appPath + "trader/" },
+        { moduleName: 'hero', modulePath: _appPath + "hero/" },
+        { moduleName: 'crisis', modulePath: _appPath + "crisis/" },
+        { moduleName: 'login', modulePath: _appPath + "login/" },
+        { moduleName: 'main', modulePath: _appPath, isMain: true },
     ];
 
     const config = {

@@ -7,20 +7,21 @@
   var config = { map: {}, packages: {}, bundles: {}, transpiler: '' };
   global.ENV = global.ENV || 'development';
   console.log(global.ENV);
-  
+
   if (global.ENV === 'production') {
     config.transpiler = 'typescript',
-    config.map = {
-      'app': 'app', // this is where your transpiled files live
-      '@angular': 'node_modules/@angular',
-      'rxjs': 'node_modules/rxjs',
-      'typescript': 'node_modules/typescript/lib/typescript.js'
-    };
+      config.map = {
+        'app': 'app', // this is where your transpiled files live
+        '@angular': 'node_modules/@angular',
+        'rxjs': 'node_modules/rxjs',
+        'typescript': 'node_modules/typescript/lib/typescript.js'
+      };
     config.packages = {
       'app': { main: 'main.js', format: 'cjs', defaultExtension: 'js' },
       'app/core': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/shared': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/strategy': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
+      'app/trader': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/hero': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/crisis': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/login': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
@@ -42,6 +43,7 @@
       'dist/crisis/index.js': ['app/crisis/*'],
       'dist/hero/index.js': ['app/hero/*'],
       'dist/strategy/index.js': ['app/strategy/*'],
+      'dist/trader/index.js': ['app/trader/*'],
       'dist/login/index.js': ['app/login/*'],
 
       'dist/dependencies.js': [
@@ -77,6 +79,7 @@
       'app/core': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/shared': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/strategy': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
+      'app/trader': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/hero': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/crisis': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/login': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
