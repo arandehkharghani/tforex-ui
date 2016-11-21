@@ -7,5 +7,6 @@ export const routes: Routes = [
   { path: 'login', loadChildren: 'app/login/login.module' },
   { path: 'crises', loadChildren: 'app/crisis/crisis.module' },
   { path: 'heroes', loadChildren: 'app/hero/hero.module' },
+  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
 ];
 export const routing = RouterModule.forRoot(routes);

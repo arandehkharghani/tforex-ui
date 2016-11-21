@@ -15,6 +15,7 @@ export class AuthService {
   protected basePath = 'http://localhost:10020/';
   private _redirectUrl: string;
   private _userId: string | number | null;
+  private _isAdmin: boolean;
 
   public set userId(value: string | number | null) {
     this._userId = value;
@@ -30,6 +31,20 @@ export class AuthService {
   }
 
   public get isLoggedIn() { return this.userId; }
+
+  public get isAdmin() {
+    this._isAdmin = sessionStorage.getItem('is_admin') === 'true';
+    return this._isAdmin;
+  }
+
+  public set isAdmin(value: boolean | null) {
+    this._isAdmin = value;
+    if (value) {
+      sessionStorage.setItem('is_admin', value.toString());
+    } else {
+      sessionStorage.removeItem('is_admin');
+    }
+  }
 
   public get redirectUrl() {
     let url = sessionStorage.getItem('redirect_url');
@@ -49,10 +64,10 @@ export class AuthService {
     }
   }
 
-  public loginAndRedirect(userId: string | number) {
+  public loginAndRedirect(userId: string | number, isAdmin: string) {
     if (userId) {
       this.userId = userId;
-
+      this.isAdmin = isAdmin === 'true';
       let redirect = this.redirectUrl;
       if (!redirect) {
         redirect = '/strategies';
@@ -68,6 +83,7 @@ export class AuthService {
 
   public logout() {
     this.userId = null;
+    this._isAdmin = false;
   }
 
   public getUser(extraHttpRequestParams?: any): Observable<User> {

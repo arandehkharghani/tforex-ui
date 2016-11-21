@@ -10,19 +10,19 @@ import * as core from '../../core';
 export class TreeDataProviderSampleService implements shared.TreeDataProvider {
 
     private _dummyData: shared.TreeNode[] = [
-        { _id: "Books", text: 'Boks', path: null },
-        { _id: "Programming", text: 'Programming', path: ",Books," },
-        { _id: "Databases", text: 'Databases', path: ",Books,Programming," },
-        { _id: "Languages", text: 'Languages', path: ",Books,Programming," },
-        { _id: "MongoDB", text: 'MongoDB', path: ",Books,Programming,Databases," },
-        { _id: "dbm", text: 'dbm', path: ",Books,Programming,Databases," },
+        { _id: "Books", title: 'Books', path: null },
+        { _id: "Programming", title: 'Programming', path: ",Books," },
+        { _id: "Databases", title: 'Databases', path: ",Books,Programming," },
+        { _id: "Languages", title: 'Languages', path: ",Books,Programming," },
+        { _id: "MongoDB", title: 'MongoDB', path: ",Books,Programming,Databases," },
+        { _id: "dbm", title: 'dbm', path: ",Books,Programming,Databases," },
 
-        { _id: "Classes", text: 'Casses', path: null },
-        { _id: "Cooking", text: 'Cooking', path: ",Classes," },
-        { _id: "Desert", text: 'Desert', path: ",Classes,Cooking," },
-        { _id: "Main", text: 'Main', path: ",Classes,Cooking," },
-        { _id: "Seafood", text: 'Seafood', path: ",Classes,Cooking,Main," },
-        { _id: "Pizza", text: 'Pizza', path: ",Classes,Cooking,Main," },
+        { _id: "Classes", title: 'Casses', path: null },
+        { _id: "Cooking", title: 'Cooking', path: ",Classes," },
+        { _id: "Desert", title: 'Desert', path: ",Classes,Cooking," },
+        { _id: "Main", title: 'Main', path: ",Classes,Cooking," },
+        { _id: "Seafood", title: 'Seafood', path: ",Classes,Cooking,Main," },
+        { _id: "Pizza", title: 'Pizza', path: ",Classes,Cooking,Main," },
     ];
 
 
@@ -51,9 +51,9 @@ export class TreeDataProviderSampleService implements shared.TreeDataProvider {
             }
             let regex: RegExp;
             if (node.path == null) {
-                regex = new RegExp('^,' + node.text + ',$');
+                regex = new RegExp('^,' + node.title + ',$');
             } else {
-                regex = new RegExp('^' + node.path + node.text + ',$');
+                regex = new RegExp('^' + node.path + node.title + ',$');
             }
             // check if this is already populated, to save an unnecessary remote api call
             if (!this._dataStore.some((x => x.path != null && regex.test(x.path)))) {

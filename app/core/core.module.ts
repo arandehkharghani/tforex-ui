@@ -1,8 +1,9 @@
 import {
     ModuleWithProviders, NgModule,
-    Optional, SkipSelf }       from '@angular/core';
+    Optional, SkipSelf,
+} from '@angular/core';
 
-import { CommonModule }      from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import * as core from '../core';
@@ -22,9 +23,12 @@ import * as core from '../core';
         core.httpServiceProvider,
         core.AuthService,
         core.AuthGuardService,
+        core.AuthAdminGuardService,
         core.CanDeactivateGuardService,
         core.DialogService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
+        core.InstrumentDataService,
+        core.InstrumentService,
     ],
 })
 export class CoreModule {
@@ -37,9 +41,12 @@ export class CoreModule {
                 core.httpServiceProvider,
                 core.AuthService,
                 core.AuthGuardService,
+                core.AuthAdminGuardService,
                 core.CanDeactivateGuardService,
                 core.DialogService,
                 { provide: LocationStrategy, useClass: HashLocationStrategy },
+                core.InstrumentDataService,
+                core.InstrumentService,
             ],
         };
     }

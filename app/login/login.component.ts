@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit, OnDestroy }        from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
-import { Subscription }       from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 import * as core from '../core';
 
@@ -28,8 +28,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       .queryParams
       .subscribe(params => {
         let userId = params['user_id'];
+        let isAdmin = params['is_admin'];
+
         if (userId) {
-          this._authService.loginAndRedirect(userId);
+          this._authService.loginAndRedirect(userId, isAdmin);
         }
       });
   }

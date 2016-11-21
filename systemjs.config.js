@@ -25,6 +25,8 @@
       'app/hero': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/crisis': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/login': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
+      'app/admin': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
+
       '@angular/core': { main: 'index.js' },
       '@angular/common': { main: 'index.js' },
       '@angular/compiler': { main: 'index.js' },
@@ -45,6 +47,7 @@
       'dist/strategy/index.js': ['app/strategy/*'],
       'dist/trader/index.js': ['app/trader/*'],
       'dist/login/index.js': ['app/login/*'],
+      'dist/admin/index.js': ['app/admin/*'],
 
       'dist/dependencies.js': [
         '@angular/core/index.js',
@@ -83,6 +86,7 @@
       'app/hero': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/crisis': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
       'app/login': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
+      'app/admin': { main: 'index.js', format: 'cjs', defaultExtension: 'js' },
 
       'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
       'rxjs': { defaultExtension: 'js' },

@@ -10,8 +10,9 @@ import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
         <a routerLink="/strategies" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }"  
           class="nav-link active">Strategies</a>
       </li>
+
       <li class="nav-item">
-        <a routerLink="/traders" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="nav-link">Traders</a>
+        <a routerLink="/traders" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="nav-link">My Traders</a>
       </li>
       <li class="nav-item">
         <a routerLink="/heroes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="nav-link">Heroes</a>
@@ -22,6 +23,10 @@ import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
       <li class="nav-item">
         <a  routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="nav-link">Login</a>
       </li>
+      <li class="nav-item">
+        <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" class="nav-link">Admin</a>
+      </li>
+
     </ul>
     <tfrx-error></tfrx-error>
 

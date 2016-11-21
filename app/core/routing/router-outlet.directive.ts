@@ -1,5 +1,7 @@
-import { ComponentFactoryResolver, ResolvedReflectiveProvider,
-    Directive, Injector } from '@angular/core';
+import {
+    ComponentFactoryResolver, ResolvedReflectiveProvider,
+    Directive, Injector,
+} from '@angular/core';
 
 
 import { ActivatedRoute, RouterOutlet, RouterOutletMap, Router } from '@angular/router';
@@ -19,4 +21,3 @@ export class TForextRouterOutletDirective extends RouterOutlet {
         });
     }
 }
-
