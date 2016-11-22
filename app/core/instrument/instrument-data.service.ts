@@ -18,6 +18,7 @@ export class InstrumentDataService {
         this._dataStore = { instruments: [] };
     }
     public loadAll() {
+        /*
         let data = [
             { _id: "Books", title: 'Books', path: null },
             { _id: "Programming", title: 'Programming', path: ",Books," },
@@ -35,7 +36,8 @@ export class InstrumentDataService {
         ];
         this._instruments$.next(data);
         return;
-        /*
+        */
+
         if (this._dataStore.instruments.length === 0) {
             this._service.getInstruments().subscribe(
                 data => {
@@ -47,7 +49,6 @@ export class InstrumentDataService {
         } else {
             this._instruments$.next(this._dataStore.instruments);
         }
-        */
     }
     public get(id: string): Observable<models.Instrument> {
         console.log(`http-service owner at instrument data service level ${(<any>this.http).owner}`);

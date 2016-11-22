@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '', component: admin.AdminComponent, canActivate: [AuthAdminGuardService], children: [
       {
-        path: '', component: admin.AdminNavComponent,
+        path: '', redirectTo: 'instruments',
       },
       {
         path: 'instruments', component: admin.InstrumentListComponent,

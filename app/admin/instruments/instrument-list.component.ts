@@ -14,7 +14,7 @@ import * as core from '../../core';
     templateUrl: 'instrument-list.component.html',
 })
 export class InstrumentListComponent implements OnInit, OnDestroy {
-    private _selectedInstrument: core.Instrument;
+    private _selectedInstruments: core.Instrument[];
     private _sub: Subscription;
 
     constructor(
@@ -27,7 +27,7 @@ export class InstrumentListComponent implements OnInit, OnDestroy {
         this._sub = this._route
             .params
             .subscribe(params => {
-                this._selectedInstrument = params['instrument'];
+                this._selectedInstruments = params['instruments'];
             });
     }
     public ngOnDestroy() {

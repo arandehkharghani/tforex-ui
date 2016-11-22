@@ -13,7 +13,6 @@ import * as admin from '../admin';
     ],
     declarations: [
         admin.AdminComponent,
-        admin.AdminNavComponent,
         admin.InstrumentListComponent,
     ],
     providers: [

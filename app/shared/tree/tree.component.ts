@@ -62,7 +62,8 @@ export class TreeComponent {
     }
 
     private onNodeClicked(node: shared.TreeNode) {
-        node.selected = !node.selected;
+        this.treeNodes.forEach(x => x.selected = false);
+        node.selected = true;
         this.selectedItemsChanged.emit([node]);
     }
 }
