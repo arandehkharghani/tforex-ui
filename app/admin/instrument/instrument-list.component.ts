@@ -13,14 +13,22 @@ import * as core from '../../core';
     moduleId: module.id,
     templateUrl: 'instrument-list.component.html',
 })
+
 export class InstrumentListComponent implements OnInit, OnDestroy {
     private _selectedInstruments: core.Instrument[];
     private _sub: Subscription;
+    private _granularities: string[] = [];
 
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
+        private _instrumentService: core.InstrumentService,
     ) {
+        for (let item in core.GranularityEnum) {
+            if (item) {
+                this._granularities.push(item);
+            }
+        }
     }
 
     public ngOnInit() {
@@ -34,5 +42,14 @@ export class InstrumentListComponent implements OnInit, OnDestroy {
         if (this._sub) {
             this._sub.unsubscribe();
         }
+    }
+    public onActivateGranularityClicked(instrument: core.Instrument, item: core.GranularityEnum) {
+        this._instrumentService.syncCandles(core.InstrumentEnum[instrument.title], item).subscribe(
+            data => instrument.granularities.push(item.toString()),
+            error => console.log(error)
+        );
+    }
+    public onGetInstrumentCandlesInfoClicked(instrument: core.Instrument, item: core.GranularityEnum) {
+        console.log('this operation is not implemented yet!');
     }
 }

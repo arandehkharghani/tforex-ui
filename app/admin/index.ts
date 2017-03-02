@@ -1,4 +1,4 @@
-export * from './instruments/instrument-list.component';
+export * from './instrument/instrument-list.component';
 
 export * from './admin.component';
 
